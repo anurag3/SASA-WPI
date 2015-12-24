@@ -1,0 +1,155 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:orientation="vertical" android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".CheckoutActivity"
+    android:weightSum="1">
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/title_checkout"
+        android:id="@+id/textView3"
+        android:layout_gravity="center_horizontal"
+        android:textSize="22sp"
+        android:textStyle="bold"
+        android:gravity="center"
+        android:layout_marginTop="15dp" />
+
+        <LinearLayout
+            android:orientation="horizontal"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center_horizontal"
+            android:layout_marginTop="15dp"
+            android:id="@+id/layout_StudentID">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/studentID"
+                android:id="@+id/textView4"
+                android:textSize="18sp"
+                android:layout_marginLeft="20dp" />
+
+            <EditText
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:id="@+id/studentID_edittext"
+                android:layout_weight="1"
+                android:layout_marginLeft="5dp"
+                android:layout_marginRight="20dp" />
+        </LinearLayout>
+
+    <LinearLayout
+        android:orientation="horizontal"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center_horizontal"
+        android:layout_marginTop="10dp"
+        android:id="@+id/layout_BookID">
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/bookID"
+            android:id="@+id/textView5"
+            android:textSize="18sp"
+            android:layout_marginLeft="30dp" />
+
+        <EditText
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:id="@+id/bookID_edittext"
+            android:layout_weight="1"
+            android:layout_marginLeft="20dp"
+            android:layout_marginRight="20dp" />
+    </LinearLayout>
+
+    <LinearLayout
+        android:orientation="vertical"
+        android:layout_width="match_parent"
+        android:layout_height="200dp"
+        android:layout_gravity="center_horizontal"
+        android:layout_marginTop="15dp"
+        android:id="@+id/layout_DatePicker"
+        android:layout_weight="0.11">
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/date"
+            android:id="@+id/textView6"
+            android:textStyle="bold"
+            android:textSize="18sp"
+            android:layout_marginLeft="30dp"
+            android:editable="false" />
+
+        <DatePicker
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
+            android:layout_gravity="center_horizontal"
+            android:spinnersShown="true"
+            android:nestedScrollingEnabled="true"
+            android:id="@+id/datePicker1"
+            android:calendarViewShown="false"
+            android:contextClickable="false"
+            android:datePickerMode="spinner" />
+
+    </LinearLayout>
+
+    <LinearLayout
+        android:orientation="horizontal"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:id="@+id/layout_btn">
+
+        <Button
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/checkout_btn"
+            android:id="@+id/checkout_btn"
+            android:textSize="10sp"
+            android:onClick="onClick"
+            android:layout_marginLeft="0dp"
+            android:layout_weight="1"/>
+
+        <Button
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/summary_btn"
+            android:id="@+id/summary_btn"
+            android:onClick="onClick"
+            android:textSize="10sp"
+            android:layout_weight="1"/>
+
+        <Button
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/return_btn"
+            android:id="@+id/return_btn"
+            android:onClick="onClick"
+            android:textSize="10sp"
+            android:layout_weight="1"/>
+    </LinearLayout>
+
+    <RelativeLayout
+            android:id="@+id/layout_btn_back"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+        <Button
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/goBack_btn"
+            android:onClick="onClick"
+            android:id="@+id/goBack_btn2"
+            android:textSize="10sp"
+            android:layout_alignParentTop="true"
+            android:layout_centerHorizontal="true" />
+    </RelativeLayout>
+
+
+
+
+</LinearLayout>
