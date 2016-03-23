@@ -4,9 +4,6 @@ package team2.library.dbtest1.view;
  * Created by Anurag on 11/11/2015.
  */
 
-import team2.library.dbtest1.R;
-import team2.library.dbtest1.login;
-import team2.library.dbtest1.util.DBOperator;
 import team2.library.dbtest1.util.Pair;
 import java.util.List;
 import org.achartengine.ChartFactory;
@@ -17,14 +14,11 @@ import org.achartengine.renderer.XYMultipleSeriesRenderer;
 import org.achartengine.renderer.XYSeriesRenderer;
 import android.content.Context;
 import android.content.Intent;
-import android.database.Cursor;
 import android.graphics.Color;
 import android.graphics.Paint.Align;
-import android.support.v7.app.AppCompatActivity;
 
 
-
-    public class ChartGenerator {
+public class ChartGenerator {
         private static double yMaxNum = 0.0;
         /*
          * A Render defining char styles Including title, text color, background

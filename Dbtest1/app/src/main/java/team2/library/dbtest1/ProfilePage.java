@@ -15,7 +15,7 @@ import team2.library.dbtest1.util.DBOperator;
  * Created by Anurag on 12/8/2015.
  */
 
-public class Profile_page extends AppCompatActivity implements View.OnClickListener {
+public class ProfilePage extends AppCompatActivity implements View.OnClickListener {
 
     private EditText profile_firstname;
     private EditText profile_lastname;
@@ -32,9 +32,11 @@ public class Profile_page extends AppCompatActivity implements View.OnClickListe
         profile_email=(EditText) this.findViewById(R.id.profile_email);
         profile_phone=(EditText) this.findViewById(R.id.profile_phone);
         profile_pass=(EditText) this.findViewById(R.id.profile_pass);
+        String [] value= new String[1];
+        value[0]=LoginActivity.user_id;
+        String sql= SQLCommand.showprofile;
+        Cursor cursor = DBOperator.getInstance().execQuery(sql,value);
 
-        String sql= "SELECT st_first_name, st_last_name,st_pass,st_email,st_phone FROM STUDENT WHERE st_id="+login.st_id;
-        Cursor cursor = DBOperator.getInstance().execQuery(sql);
         StringArray stringArray = new StringArray();
         String ars[][]= stringArray.toStr(cursor);
         //String first_name=cursor.getString(0);
@@ -65,9 +67,9 @@ public class Profile_page extends AppCompatActivity implements View.OnClickListe
             value[2]= profile_email.getText().toString();
             value[3]= profile_pass.getText().toString();
             value[4]= profile_phone.getText().toString();
-            value[5]= login.st_id;
+            value[5]= LoginActivity.user_id;
 
-            String sql=SQLCommand.profupdate;
+            String sql=SQLCommand.updateprofile;
             System.out.println(sql);
             DBOperator.getInstance().execSQL(sql, value);
             Toast.makeText(getApplicationContext(),"Profile Updated", Toast.LENGTH_SHORT).show();

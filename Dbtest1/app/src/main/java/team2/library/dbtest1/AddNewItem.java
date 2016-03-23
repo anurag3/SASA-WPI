@@ -6,7 +6,6 @@ import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.text.TextUtils;
 import android.view.View;
-import android.widget.AdapterView;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.Spinner;
@@ -18,7 +17,7 @@ import team2.library.dbtest1.util.DBOperator;
 /**
  * Created by Anurag on 12/8/2015.
  */
-public class Add_new_item extends AppCompatActivity implements View.OnClickListener {
+public class AddNewItem extends AppCompatActivity implements View.OnClickListener {
     private EditText item_name;
     private EditText item_qoh;
     private EditText item_price;
@@ -39,7 +38,7 @@ public class Add_new_item extends AppCompatActivity implements View.OnClickListe
         post = (Button) this.findViewById(R.id.post);
         post.setOnClickListener(this);
 
-        back = (Button) this.findViewById(R.id.back);
+        back = (Button) this.findViewById(R.id.home);
         back.setOnClickListener(this);
 
         querySpinner = (Spinner) this.findViewById(R.id.spinner_item_cat);
@@ -51,8 +50,7 @@ public class Add_new_item extends AppCompatActivity implements View.OnClickListe
 
         int id = v.getId();
         String cat_id = null;
-        if (id == R.id.post)
-        {
+        if (id == R.id.post) {
 
             item_name.setError(null);
             item_price.setError(null);
@@ -67,23 +65,23 @@ public class Add_new_item extends AppCompatActivity implements View.OnClickListe
             View focusView = null;
             boolean cancel = false;
             if (TextUtils.isEmpty(name)) {
-                item_name.setError("Item Name is Empty");
+                item_name.setError("Please Enter Item Name");
                 focusView = item_name;
                 cancel = true;
             } else if (TextUtils.isEmpty(qoh)) {
-                item_qoh.setError("Item Quantity is Empty");
+                item_qoh.setError("Please Enter Item Quantity");
                 focusView = item_qoh;
                 cancel = true;
             } else if (TextUtils.isEmpty(price)) {
-                item_price.setError("Item Price is Empty");
+                item_price.setError("Please Enter Item Price");
                 focusView = item_price;
                 cancel = true;
             } else if (TextUtils.isEmpty(desc)) {
-                item_desc.setError("Item Description is Empty");
+                item_desc.setError("Please Enter Item Description");
                 focusView = item_desc;
                 cancel = true;
-            } else  if (cancel) {
-                // There was an error; don't attempt login and focus the first
+            } else if (cancel) {
+                // There was an error; don't attempt LoginActivity1 and focus the first
                 // form field with an error.
                 focusView.requestFocus();
             } else {
@@ -103,43 +101,65 @@ public class Add_new_item extends AppCompatActivity implements View.OnClickListe
                     cat_id = "303";
                 }
 
-                int item_id;
-                String count = "select count(item_id) from item";
+                //Post Creation
+                int post_hit_counter = 1;
+                String count = SQLCommand.getpostid;
                 Cursor cursor = DBOperator.getInstance().execQuery(count);
                 StringArray stringArray = new StringArray();
                 String ars[][] = stringArray.toStr(cursor);
-                item_id = Integer.parseInt(ars[0][0]);
+                int count1 = Integer.parseInt(ars[0][0]);
+                System.out.println("Original PostId"+count1);
+                count1 = count1 + 1;
+                System.out.println("New PostId"+count1);
+
+                String value[] = new String[5];
+                value[0] = Integer.toString(count1);
+                value[1] = SellPage.title;
+                value[2] = SellPage.description;
+                value[3] = Integer.toString(post_hit_counter);
+                value[4] = LoginActivity.user_id;
+
+                String sql = SQLCommand.insertpost;
+                DBOperator.getInstance().execSQL(sql,value);
+
+                //Item Addition to Post
+                int item_id;
+                String count2 = SQLCommand.getitemid;
+                Cursor cursor2 = DBOperator.getInstance().execQuery(count2);
+                StringArray stringArray2 = new StringArray();
+                String ars2[][] = stringArray2.toStr(cursor2);
+                item_id = Integer.parseInt(ars2[0][0]);
+                System.out.println("Original ItemID="+item_id);
                 item_id = item_id + 1;
+                System.out.println("New ItemID="+item_id);
 
-                int post_id = sell.count1;
+                String value2[] = new String[7];
+                value2[0] = Integer.toString(item_id);
+                value2[1] = item_name.getText().toString();
+                value2[2] = item_qoh.getText().toString();
+                value2[3] = item_price.getText().toString();
+                value2[4] = item_desc.getText().toString();
+                value2[5] = Integer.toString(count1);
+                value2[6] = cat_id;
 
-                int item_hit = 1;
-                String value[] = new String[8];
-                value[0] = Integer.toString(item_id);
-                value[1] = item_name.getText().toString();
-                value[2] = Integer.toString(post_id);
-                value[3] = item_qoh.getText().toString();
-                value[4] = item_price.getText().toString();
-                value[5] = item_desc.getText().toString();
-                value[6] = cat_id;
-                value[7] = Integer.toString(item_hit);
 
-                String sql = SQLCommand.itemInsert;
-                System.out.println(sql);
-                DBOperator.getInstance().execSQL(sql, value);
+                String sql2 = SQLCommand.insertitem;
+                System.out.println(sql2);
+                DBOperator.getInstance().execSQL(sql2,value2);
 
                 Toast.makeText(getApplicationContext(), "Item Successfully Posted", Toast.LENGTH_LONG).show();
 
-                Intent intent = new Intent(this, Add_new_item.class);
+                Intent intent = new Intent(this, AddNewItem.class);
                 this.startActivity(intent);
 
-            }
-
-            if (id == R.id.back)
-            {
-                Intent intent = new Intent(this, mainpage.class);
-                this.startActivity(intent);
             }
         }
+
+            if (id == R.id.home)
+            {
+                Intent intent = new Intent(this, MainActivity.class);
+                this.startActivity(intent);
+            }
+
     }
 }

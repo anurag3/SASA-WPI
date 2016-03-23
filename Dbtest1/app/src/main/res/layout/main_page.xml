@@ -62,7 +62,8 @@
             android:background="@drawable/rounded_buttons"
             android:layout_marginStart="21dp"
             android:layout_alignParentTop="true"
-            android:layout_alignParentStart="true" />
+            android:layout_alignParentStart="true"
+            android:gravity="center_vertical|center_horizontal" />
 
         <Button
             android:layout_width="150dp"
@@ -76,7 +77,8 @@
             android:layout_alignTop="@+id/buy_button"
             android:layout_alignParentEnd="true"
             android:layout_marginEnd="21dp"
-            android:onClick="onClick" />
+            android:onClick="onClick"
+            android:gravity="center_vertical|center_horizontal" />
 
         <TextView
             android:layout_width="wrap_content"
@@ -89,7 +91,8 @@
             android:layout_marginStart="21dp"
             android:layout_below="@+id/buy_button"
             android:layout_alignEnd="@+id/buy_button"
-            android:onClick="onClick" />
+            android:onClick="onClick"
+            android:gravity="center_horizontal" />
 
         <TextView
             android:layout_width="wrap_content"
@@ -101,7 +104,8 @@
             android:layout_alignTop="@+id/hot_text"
             android:layout_alignEnd="@+id/sell_button"
             android:layout_marginEnd="21dp"
-            android:onClick="onClick" />
+            android:onClick="onClick"
+            android:gravity="center_horizontal" />
         <!-- Floating Action Button-->
         <!--<android.support.design.widget.FloatingActionButton
             android:id="@+id/fab"

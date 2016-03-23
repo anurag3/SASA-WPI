@@ -3,7 +3,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:orientation="vertical" android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".ShowlistActivity"
+    tools:context=".ShowBuyListActivity"
     android:background="#E0E0E0">
 <LinearLayout
     android:layout_width="match_parent"
@@ -33,7 +33,7 @@
             android:layout_height="match_parent"
             android:text="Sort"
             android:layout_weight="1"
-            android:id="@+id/button4"
+            android:id="@+id/sortbtn"
             android:onClick="onClick"/>
 
         <Button
@@ -41,7 +41,7 @@
             android:layout_height="match_parent"
             android:text="Clear"
             android:layout_weight="1"
-            android:id="@+id/button5"
+            android:id="@+id/clrbtn"
             android:onClick="onClick"
             />
     </LinearLayout>

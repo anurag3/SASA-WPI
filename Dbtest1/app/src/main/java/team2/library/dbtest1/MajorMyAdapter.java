@@ -15,6 +15,7 @@ public class MajorMyAdapter extends RecyclerView.Adapter<MajorMyAdapter.ViewHold
     private String[][] mDataset;
     public static View v_student;
     public static String post_id;
+    public static String post_name;
     private Context context;
     private static RecyclerViewClickListener itemListener;
 
@@ -23,14 +24,14 @@ public class MajorMyAdapter extends RecyclerView.Adapter<MajorMyAdapter.ViewHold
     // you provide access to all the views for a data item in a view holder
     public class ViewHolder extends RecyclerView.ViewHolder {
         // each data item is just a string in this case
-        public TextView name;
+        public TextView post_name;
         public TextView desc;
         public TextView price;
         public LinearLayout test;
 
         public ViewHolder(View v) {
             super(v);
-            name = (TextView) v.findViewById(R.id.item_name);
+            post_name = (TextView) v.findViewById(R.id.item_name);
             desc = (TextView) v.findViewById(R.id.item_desc);
             price = (TextView) v.findViewById(R.id.item_price);
             test=(LinearLayout) v.findViewById(R.id.test);
@@ -87,11 +88,11 @@ public class MajorMyAdapter extends RecyclerView.Adapter<MajorMyAdapter.ViewHold
             }
 */
         //if (mDataset.length-1>position) {
-            holder.name.setText(mDataset[position][0]);
-            holder.desc.setText(mDataset[position][1]);
-            holder.price.setText(mDataset[position][2]);
+            holder.post_name.setText(mDataset[position][1]);
+            holder.desc.setText(mDataset[position][2]);
+            holder.price.setText(mDataset[position][3]);
 
-            post_id = mDataset[position][3];
+            post_id = mDataset[position][0];
             System.out.println(post_id);
             holder.test.setOnClickListener(new OnClickListener() {
                 @Override

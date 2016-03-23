@@ -12,7 +12,7 @@ public abstract class DBConstant
     //database file directory
     public static String DATABASE_PATH = "/data/data/team2.library.dbtest1/databases";
     //database file name
-    public static String DATABASE_FILE = "iBuy.db";
+    public static String DATABASE_FILE = "SASA@WPI.db";
     //database version
     public static int DATABASE_VERSION = 1;
 }

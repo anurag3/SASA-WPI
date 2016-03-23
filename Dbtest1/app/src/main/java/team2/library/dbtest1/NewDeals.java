@@ -1,32 +1,26 @@
 package team2.library.dbtest1;
 
-        import team2.library.dbtest1.constant.SQLCommand;
-        import team2.library.dbtest1.dbtest.DBhelper;
-        import team2.library.dbtest1.util.DBOpenHelper;
-        import team2.library.dbtest1.util.DBOperator;
-        import team2.library.dbtest1.util.Pair;
-        import team2.library.dbtest1.view.ChartGenerator;
+import android.annotation.SuppressLint;
+import android.content.Intent;
+import android.database.Cursor;
+import android.os.Bundle;
+import android.support.v7.app.AppCompatActivity;
+import android.view.View;
+import android.widget.AdapterView;
+import android.widget.AdapterView.OnItemClickListener;
+import android.widget.ArrayAdapter;
+import android.widget.ListView;
+import android.widget.SimpleCursorAdapter;
+import android.widget.Spinner;
+import android.widget.Toast;
 
-        import android.annotation.SuppressLint;
-        import android.content.Intent;
-        import android.database.Cursor;
-        import android.database.sqlite.SQLiteDatabase;
-        import android.os.Bundle;
-        import android.support.v7.app.AppCompatActivity;
-        import android.view.View;
-        import android.widget.AdapterView;
-        import android.widget.ArrayAdapter;
-        import android.widget.ListView;
-        import android.widget.SimpleCursorAdapter;
-        import android.widget.Spinner;
-        import android.widget.Toast;
-        import android.widget.AdapterView.OnItemClickListener;
+import java.util.ArrayList;
+import java.util.List;
 
-        import java.util.ArrayList;
-        import java.util.LinkedList;
-        import java.util.List;
+import team2.library.dbtest1.constant.SQLCommand;
+import team2.library.dbtest1.util.DBOperator;
 
-public class ShowlistActivity extends AppCompatActivity {
+public class NewDeals extends AppCompatActivity {
     private ListView listView;
     private Spinner spinner;
 
@@ -37,7 +31,7 @@ public class ShowlistActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         System.gc();
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.buypage);
+        setContentView(R.layout.buy_page);
 
         listView = (ListView) this.findViewById(R.id.buy_list);
         listView.setOnItemClickListener(new ItemClickListener());
@@ -46,12 +40,12 @@ public class ShowlistActivity extends AppCompatActivity {
         Intent intent = this.getIntent();
         //String sql = intent.getStringExtra("sql");
         // execute the sql
-        Cursor cursor = DBOperator.getInstance().execQuery(SQLCommand.QUERY_1, null);
-        String[] from = new String[]{"st_first_name","st_last_name","post_title","post_desc"};
-        int[] to = new int[]{R.id.st_first_name, R.id.st_last_name,R.id.post_title, R.id.post_desc};
+        Cursor cursor = DBOperator.getInstance().execQuery(SQLCommand.shownewbuylist, null);
+        String[] from = new String[]{"user_first_name","user_last_name","post_title","post_desc"};
+        int[] to = new int[]{R.id.user_first_name, R.id.user_last_name,R.id.post_title, R.id.post_desc};
         // bind the data to list
         final SimpleCursorAdapter adapter = new SimpleCursorAdapter(
-                getApplicationContext(), R.layout.listitem_ibuy, cursor,
+                getApplicationContext(), R.layout.buy_listview, cursor,
                 from, to, SimpleCursorAdapter.IGNORE_ITEM_VIEW_TYPE);
         listView.setAdapter(adapter);
         adapter.notifyDataSetChanged();
@@ -67,7 +61,7 @@ public class ShowlistActivity extends AppCompatActivity {
 public void onClick(View v){
     String sql = "";
     int id=v.getId();
-    if(id==R.id.button4)
+    if(id==R.id.sortbtn)
     {
     int pos = spinner.getSelectedItemPosition();
     if (pos == Spinner.INVALID_POSITION) {
@@ -92,85 +86,30 @@ public void onClick(View v){
         sql = SQLCommand.QUERY_category_spinner_4;
     }
     Cursor cursor = DBOperator.getInstance().execQuery(sql, null);
-        String[] from = new String[]{"st_first_name","st_last_name","post_title","post_desc"};
-        int[] to = new int[]{R.id.st_first_name, R.id.st_last_name,R.id.post_title, R.id.post_desc};
+        String[] from = new String[]{"user_first_name","user_last_name","post_title","post_desc"};
+        int[] to = new int[]{R.id.user_first_name, R.id.user_last_name,R.id.post_title, R.id.post_desc};
         // bind the data to list
         final SimpleCursorAdapter adapter = new SimpleCursorAdapter(
-                getApplicationContext(), R.layout.listitem_ibuy, cursor,
+                getApplicationContext(), R.layout.buy_listview, cursor,
                 from, to, SimpleCursorAdapter.IGNORE_ITEM_VIEW_TYPE);
         listView.setAdapter(adapter);
     }
-    if(id==R.id.button5)
+    if(id==R.id.clrbtn)
     {
-        Cursor cursor = DBOperator.getInstance().execQuery(SQLCommand.QUERY_1, null);
-        String[] from = new String[]{"st_first_name","st_last_name","post_title","post_desc"};
-        int[] to = new int[]{R.id.st_first_name, R.id.st_last_name,R.id.post_title, R.id.post_desc};
+        Cursor cursor = DBOperator.getInstance().execQuery(SQLCommand.shownewbuylist, null);
+        String[] from = new String[]{"user_first_name","user_last_name","post_title","post_desc"};
+        int[] to = new int[]{R.id.user_first_name, R.id.user_last_name,R.id.post_title, R.id.post_desc};
         // bind the data to list
         final SimpleCursorAdapter adapter = new SimpleCursorAdapter(
-                getApplicationContext(), R.layout.listitem_ibuy, cursor,
+                getApplicationContext(), R.layout.buy_listview, cursor,
                 from, to, SimpleCursorAdapter.IGNORE_ITEM_VIEW_TYPE);
         listView.setAdapter(adapter);
 
         spinner.setSelection(0);
     }
 
-   /* if(id==R.id.button6) {
-        // show summary chart
-        String sql1 = "SELECT item_id,count(item_hit_counter) as total FROM ITEM group by item_id order by total desc";
-//select strftime('%m',startDate) as month,count(*) as total from TenancyAgreement  where strftime('%Y',startDate)='2016' group by month order by total desc
-        Cursor cursor = DBOperator.getInstance().execQuery(sql1);
-        cursor.moveToFirst();
-        List<Pair> pairList = new LinkedList<Pair>();
-        for (int i = 1; i <= cursor.getCount(); i++) {
-            Pair pair = new Pair(i, 0);
-            pairList.add(pair);
-        }
-        while (cursor.moveToNext()) {
-            int location = Integer.parseInt(cursor.getString(0));
-            pairList.get(location - 1).setNumber(Double.parseDouble(cursor.getString(1)));
-        }
-        cursor.close();
-        Intent intent = ChartGenerator.getBarChart(getBaseContext(),
-                "Required House Sitter Summary in 2016", pairList);
-        this.startActivity(intent);
-    }*/
+
 }
-
-    /**
-     * Get input data including studentID, book callnum, date and returned state
-     *
-     * @param
-     * @return
-     */
-
-
-
-
-
-
-
-
-  /*  public void listview() {
-        listView = (ListView) this.findViewById(R.id.buy_list);
-        listView.setOnItemClickListener(new ItemClickListener());
-
-        // get the sql string delivered from the QueryActivity
-        Intent intent = this.getIntent();
-        String sql = intent.getStringExtra("sql");
-        // execute the sql
-        Cursor cursor = DBOperator.getInstance().execQuery(sql, null);
-        String[] from = new String[] { "st_first_name", "post_title" };
-        int [] to = new int[] { R.id.st_first_name, R.id.post_title};
-        // bind the data to list
-        System.out.println(SimpleCursorAdapter.IGNORE_ITEM_VIEW_TYPE);
-        SimpleCursorAdapter adapter = new SimpleCursorAdapter(
-                getApplicationContext(), R.layout.listitem_ibuy, cursor,
-                from,to,SimpleCursorAdapter.IGNORE_ITEM_VIEW_TYPE);
-        listView.setAdapter(adapter);
-    }
-*/
-
-
 
     public List<String> getAllLabels()
     {
@@ -240,7 +179,7 @@ public void onClick(View v){
             String[] from = new String[] { "st_first_name", "post_title" };
             int [] to = new int[] { R.id.st_first_name, R.id.post_title};
             SimpleCursorAdapter adapter = new SimpleCursorAdapter(
-                    getApplicationContext(), R.layout.listitem_ibuy, cursor,
+                    getApplicationContext(), R.layout.buy_listview, cursor,
                     from,to,SimpleCursorAdapter.IGNORE_ITEM_VIEW_TYPE);
             listView.setAdapter(adapter);
         }
@@ -253,14 +192,10 @@ public void onClick(View v){
     {
         public void onItemClick(AdapterView<?> parent, View view, int position, long id)
         {
-
-
-
-
             Cursor cursor = (Cursor) listView.getItemAtPosition(position);
             String post_id = cursor.getString(0);
-            String st_first_name = cursor.getString(1);
-            String st_last_name = cursor.getString(2);
+            String user_first_name = cursor.getString(1);
+            String user_last_name = cursor.getString(2);
             String post_title = cursor.getString(3);
             String post_desc = cursor.getString(4);
 
@@ -286,12 +221,16 @@ public void onClick(View v){
             // String cofine = cursor.getString(4);
             // String stname = cursor.getString(5);
             //Toast.makeText(getApplicationContext(),"Student Name: " + st_first_name+ "\nPost Title: " + post_title+ "\nPost Description: " + post_desc, Toast.LENGTH_LONG).show();
-            Intent intent = new Intent(getApplicationContext(), MajorList.class);
-            intent.putExtra("st_first_name", st_first_name);
-            intent.putExtra("st_last_name", st_last_name);
+            Intent intent = new Intent(getApplicationContext(), PostSelectedPageTest.class);
+            intent.putExtra("user_first_name", user_first_name);
+            intent.putExtra("user_last_name", user_last_name);
             intent.putExtra("post_title", post_title);
             intent.putExtra("post_desc", post_desc);
             intent.putExtra("post_id",post_id);
+
+
+
+
             startActivity(intent);
         }
     }

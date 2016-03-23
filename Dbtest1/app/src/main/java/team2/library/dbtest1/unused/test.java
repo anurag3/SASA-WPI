@@ -1,4 +1,4 @@
-package team2.library.dbtest1;
+package team2.library.dbtest1.unused;
 
 /**
  * Created by Anurag on 12/5/2015.
@@ -21,6 +21,7 @@ package team2.library.dbtest1;
         import android.widget.TableRow;
         import android.widget.TextView;
 
+        import team2.library.dbtest1.R;
         import team2.library.dbtest1.constant.SQLCommand;
 
 public class test extends Activity {
@@ -31,7 +32,7 @@ public class test extends Activity {
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.tablelist);
+        //setContentView(R.layout.tablelist);
         db=openOrCreateDatabase("abc",MODE_PRIVATE, null);
         db.execSQL("CREATE TABLE IF NOT EXISTS Student(fname VARCHAR,lname VARCHAR,email VARCHAR);");
     }

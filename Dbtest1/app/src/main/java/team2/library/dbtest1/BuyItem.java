@@ -5,14 +5,8 @@ import android.content.Intent;
 import android.database.Cursor;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
-import android.view.View;
-import android.widget.AdapterView;
 import android.widget.ListView;
 import android.widget.SimpleCursorAdapter;
-import android.widget.Toast;
-
-import java.util.ArrayList;
-import java.util.List;
 
 import team2.library.dbtest1.util.DBOperator;
 
@@ -20,7 +14,8 @@ import team2.library.dbtest1.util.DBOperator;
 /**
  * Created by Anurag on 11/21/2015.
  */
-public class buy extends AppCompatActivity {
+
+public class BuyItem extends AppCompatActivity {
 
 
     private ListView listView;
@@ -29,7 +24,7 @@ public class buy extends AppCompatActivity {
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.buypage);
+        setContentView(R.layout.buy_page);
 
         //copy database file
         try {
@@ -41,7 +36,7 @@ public class buy extends AppCompatActivity {
         listView = (ListView) this.findViewById(R.id.buy_list);
         //listView.setOnItemClickListener(new ItemClickListener());
 
-        // get the sql string delivered from the mainpage
+        // get the sql string delivered from the MainActivity
         Intent intent = this.getIntent();
         String sql = intent.getStringExtra("sql");
         // execute the sql
@@ -52,7 +47,7 @@ public class buy extends AppCompatActivity {
         }
 
         SimpleCursorAdapter adapter = new SimpleCursorAdapter(
-                getApplicationContext(), R.layout.listitem_ibuy, cursor,
+                getApplicationContext(), R.layout.buy_listview, cursor,
                 new String[] { "post_first_name", "st_title", "post_desc"}, new int[]
                 {R.id.st_first_name,R.id.post_title, R.id.post_desc },
                 SimpleCursorAdapter.IGNORE_ITEM_VIEW_TYPE);

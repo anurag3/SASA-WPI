@@ -2,7 +2,7 @@
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     package="team2.library.dbtest1">
 
-    <!-- To auto-complete the email text field in the login form with the user's emails -->
+    <!-- To auto-complete the email text field in the LoginActivity1 form with the user's emails -->
     <uses-permission android:name="android.permission.GET_ACCOUNTS" />
     <uses-permission android:name="android.permission.READ_PROFILE" />
     <uses-permission android:name="android.permission.READ_CONTACTS" />
@@ -14,7 +14,7 @@
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
         <activity
-            android:name=".login"
+            android:name=".LoginActivity"
             android:label="@string/app_name">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
@@ -23,39 +23,30 @@
             </intent-filter>
         </activity>
         <activity
-            android:name=".LoginActivity"
+            android:name=".unused.AnuragDesaiActivity"
             android:label="@string/app_name"></activity>
+
         <activity
-            android:name=".AnuragDesaiActivity"
+            android:name=".ShowBuyListActivity"
             android:label="@string/app_name"></activity>
-        <activity android:name=".QueryActivity" />
-        <activity android:name=".CheckoutActivity" />
-        <activity
-            android:name="org.achartengine.GraphicalActivity"
-            android:label="@string/app_name" />
-        <activity
-            android:name=".ShowlistActivity"
-            android:label="@string/app_name"></activity>
-        <activity android:name=".mainpage" />
-        <activity android:name=".test" />
+        <activity android:name=".MainActivity" />
+        <activity android:name=".unused.test" />
         <activity android:name=".dbtest.AddTodoActivity" />
         <activity android:name=".dbtest.ModifyTodoActivity" />
         <activity android:name=".dbtest.TodoListActivity" />
         <activity
-            android:name=".post_page"
+            android:name=".PostPage"
             android:label="@string/app_name"></activity>
-        <activity android:name=".Forgot"></activity>
-        <activity android:name=".Profile"></activity>
-        <activity android:name=".SignUp"></activity>
-        <activity android:name=".sell"></activity>
-        <activity android:name=".buy"></activity>
+        <activity android:name=".unused.ForgotPassword"></activity>
+        <activity android:name=".SellPage"></activity>
+        <activity android:name=".BuyItem"></activity>
         <activity android:name=".MajorList"></activity>
-        <activity android:name=".Add_new_item"></activity>
-        <activity android:name=".HotBuy"></activity>
-        <activity android:name=".NewBuy"></activity>
-        <activity android:name=".Profile_page"></activity>
-        <activity android:name=".Wishlist"></activity>
-        <activity android:name=".Chart_test"></activity>
+        <activity android:name=".AddNewItem"></activity>
+        <activity android:name=".HotDeals"></activity>
+        <activity android:name=".NewDeals"></activity>
+        <activity android:name=".ProfilePage"></activity>
+        <activity android:name=".WishList"></activity>
+        <activity android:name=".PostSelectedPageTest"></activity>
 
     </application>
 

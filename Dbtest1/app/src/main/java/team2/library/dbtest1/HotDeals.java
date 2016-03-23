@@ -20,7 +20,7 @@ import java.util.List;
 import team2.library.dbtest1.constant.SQLCommand;
 import team2.library.dbtest1.util.DBOperator;
 
-public class HotBuy extends AppCompatActivity {
+public class HotDeals extends AppCompatActivity {
     private ListView listView;
     private Spinner spinner;
 
@@ -30,21 +30,21 @@ public class HotBuy extends AppCompatActivity {
 
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.buypage);
+        setContentView(R.layout.buy_page);
 
         listView = (ListView) this.findViewById(R.id.buy_list);
         listView.setOnItemClickListener(new ItemClickListener());
 
         // get the sql string delivered from the QueryActivity
-        Intent intent = this.getIntent();
+        //Intent intent = this.getIntent();
         //String sql = intent.getStringExtra("sql");
         // execute the sql
-        Cursor cursor = DBOperator.getInstance().execQuery(SQLCommand.hotbuy, null);
-        String[] from = new String[]{"st_first_name","st_last_name","post_title","post_desc"};
-        int[] to = new int[]{R.id.st_first_name, R.id.st_last_name,R.id.post_title, R.id.post_desc};
+        Cursor cursor = DBOperator.getInstance().execQuery(SQLCommand.showhotbuylist, null);
+        String[] from = new String[]{"user_first_name","user_last_name","post_title","post_desc"};
+        int[] to = new int[]{R.id.user_first_name, R.id.user_last_name,R.id.post_title, R.id.post_desc};
         // bind the data to list
         final SimpleCursorAdapter adapter = new SimpleCursorAdapter(
-                getApplicationContext(), R.layout.listitem_ibuy, cursor,
+                getApplicationContext(), R.layout.buy_listview, cursor,
                 from, to, SimpleCursorAdapter.IGNORE_ITEM_VIEW_TYPE);
         listView.setAdapter(adapter);
         adapter.notifyDataSetChanged();
@@ -60,7 +60,7 @@ public class HotBuy extends AppCompatActivity {
 public void onClick(View v){
     String sql = "";
     int id=v.getId();
-    if(id==R.id.button4)
+    if(id==R.id.sortbtn)
     {
     int pos = spinner.getSelectedItemPosition();
     if (pos == Spinner.INVALID_POSITION) {
@@ -86,22 +86,22 @@ public void onClick(View v){
     }
     Cursor cursor = DBOperator.getInstance().execQuery(sql, null);
         String[] from = new String[]{"st_first_name","st_last_name","post_title","post_desc"};
-        int[] to = new int[]{R.id.st_first_name, R.id.st_last_name,R.id.post_title, R.id.post_desc};
+        int[] to = new int[]{R.id.user_first_name, R.id.user_last_name,R.id.post_title, R.id.post_desc};
         // bind the data to list
         final SimpleCursorAdapter adapter = new SimpleCursorAdapter(
-                getApplicationContext(), R.layout.listitem_ibuy, cursor,
+                getApplicationContext(), R.layout.buy_listview, cursor,
                 from, to, SimpleCursorAdapter.IGNORE_ITEM_VIEW_TYPE);
         listView.setAdapter(adapter);
     }
-    if(id==R.id.button5)
+    if(id==R.id.clrbtn)
     {
         Cursor cursor = DBOperator.getInstance().execQuery(SQLCommand.QUERY_1, null);
         // bind the data to list
         String[] from = new String[]{"st_first_name","st_last_name","post_title","post_desc"};
-        int[] to = new int[]{R.id.st_first_name, R.id.st_last_name,R.id.post_title, R.id.post_desc};
+        int[] to = new int[]{R.id.user_first_name, R.id.user_last_name,R.id.post_title, R.id.post_desc};
         // bind the data to list
         final SimpleCursorAdapter adapter = new SimpleCursorAdapter(
-                getApplicationContext(), R.layout.listitem_ibuy, cursor,
+                getApplicationContext(), R.layout.buy_listview, cursor,
                 from, to, SimpleCursorAdapter.IGNORE_ITEM_VIEW_TYPE);
         listView.setAdapter(adapter);
         spinner.setSelection(0);
@@ -129,7 +129,7 @@ public void onClick(View v){
         // bind the data to list
         System.out.println(SimpleCursorAdapter.IGNORE_ITEM_VIEW_TYPE);
         SimpleCursorAdapter adapter = new SimpleCursorAdapter(
-                getApplicationContext(), R.layout.listitem_ibuy, cursor,
+                getApplicationContext(), R.layout.buy_listview, cursor,
                 from,to,SimpleCursorAdapter.IGNORE_ITEM_VIEW_TYPE);
         listView.setAdapter(adapter);
     }
@@ -205,7 +205,7 @@ public void onClick(View v){
             String[] from = new String[] { "st_first_name", "post_title" };
             int [] to = new int[] { R.id.st_first_name, R.id.post_title};
             SimpleCursorAdapter adapter = new SimpleCursorAdapter(
-                    getApplicationContext(), R.layout.listitem_ibuy, cursor,
+                    getApplicationContext(), R.layout.buy_listview, cursor,
                     from,to,SimpleCursorAdapter.IGNORE_ITEM_VIEW_TYPE);
             listView.setAdapter(adapter);
         }
@@ -218,27 +218,23 @@ public void onClick(View v){
     {
         public void onItemClick(AdapterView<?> parent, View view, int position, long id)
         {
-
-
-
-
             Cursor cursor = (Cursor) listView.getItemAtPosition(position);
             String post_id = cursor.getString(0);
-            String st_first_name = cursor.getString(1);
-            String st_last_name = cursor.getString(2);
+            String user_first_name = cursor.getString(1);
+            String user_last_name = cursor.getString(2);
             String post_title = cursor.getString(3);
             String post_desc = cursor.getString(4);
 
 
             int count1;
-            String count= "select post_hit_counter from post where post_id="+post_id;
+            String count= "SELECT post_hit_counter FROM POST where post_id="+post_id;
             Cursor cursor1 = DBOperator.getInstance().execQuery(count);
             StringArray stringArray = new StringArray();
             String ars[][]= stringArray.toStr(cursor1);
             count1=Integer.parseInt(ars[0][0]);
             count1=count1+1;
 
-            String sql=SQLCommand.postUpdater;
+            String sql=SQLCommand.updatehitcount;
             String value[]=new String[2];
             value[0]=Integer.toString(count1);
             value[1]=post_id;
@@ -251,9 +247,9 @@ public void onClick(View v){
             // String cofine = cursor.getString(4);
             // String stname = cursor.getString(5);
             //Toast.makeText(getApplicationContext(),"Student Name: " + st_first_name+ "\nPost Title: " + post_title+ "\nPost Description: " + post_desc, Toast.LENGTH_LONG).show();
-            Intent intent = new Intent(getApplicationContext(), MajorList.class);
-            intent.putExtra("st_first_name", st_first_name);
-            intent.putExtra("st_last_name", st_last_name);
+            Intent intent = new Intent(getApplicationContext(), PostSelectedPageTest.class);
+            intent.putExtra("user_first_name", user_first_name);
+            intent.putExtra("user_last_name", user_last_name);
             intent.putExtra("post_title", post_title);
             intent.putExtra("post_desc", post_desc);
             intent.putExtra("post_id",post_id);

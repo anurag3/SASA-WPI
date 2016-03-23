@@ -12,7 +12,7 @@ import team2.library.dbtest1.util.DBOperator;
 /**
  * Created by Anurag on 12/8/2015.
  */
-public class Wishlist extends AppCompatActivity {
+public class WishList extends AppCompatActivity {
 
     private ListView listView;
     protected void onCreate(Bundle savedInstanceState) {
@@ -21,15 +21,21 @@ public class Wishlist extends AppCompatActivity {
         setContentView(R.layout.wishlist);
 
         listView = (ListView) this.findViewById(R.id.wish_listView);
-        //String sql= "SELECT item_name, item_price FROM ITEM WHERE st_id="+login.st_id;
-        String sql= "SELECT wish_id FROM WISHLIST WHERE st_id="+login.st_id;
-        Cursor cursor = DBOperator.getInstance().execQuery(sql);
+
+        String [] value= new String[1];
+        value[0]=LoginActivity.user_id;
+        String sql= SQLCommand.getwishlist;
+        Cursor cursor = DBOperator.getInstance().execQuery(sql,value);
+
         StringArray stringArray = new StringArray();
         String ars[][]= stringArray.toStr(cursor);
-        String w_id = ars[0][0];
+        String wish_id = ars[0][0];
 
-        String sql1= "SELECT ITEM.item_id AS _id,item_name, item_price FROM ITEM,WISHLIST_DETAILS,WISHLIST WHERE WISHLIST_DETAILS.item_id=ITEM.item_id AND WISHLIST_DETAILS.wish_id=WISHLIST.wish_id AND WISHLIST.wish_id="+w_id;
-        Cursor cursor1 = DBOperator.getInstance().execQuery(sql1);
+        String [] value1= new String[1];
+        value1[0]= wish_id;
+
+        String sql1= SQLCommand.showwishlist;
+        Cursor cursor1 = DBOperator.getInstance().execQuery(sql1,value1);
         String[] from = new String[]{"item_name","item_price"};
         int[] to = new int[]{R.id.item_name, R.id.item_price};
         final SimpleCursorAdapter adapter = new SimpleCursorAdapter(

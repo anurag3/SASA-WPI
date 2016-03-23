@@ -3,25 +3,18 @@ package team2.library.dbtest1;
 import android.content.Intent;
 import android.database.Cursor;
 import android.os.Bundle;
-import android.support.design.widget.FloatingActionButton;
-import android.support.design.widget.Snackbar;
 import android.support.v7.app.AppCompatActivity;
-import android.support.v7.widget.Toolbar;
 import android.view.View;
 import android.widget.AdapterView;
-import android.widget.EditText;
 import android.widget.ListView;
 import android.widget.SimpleCursorAdapter;
 import android.widget.TextView;
-import android.widget.Toast;
-
-import java.security.PublicKey;
 
 import team2.library.dbtest1.constant.SQLCommand;
 import team2.library.dbtest1.dbtest.SQLController;
 import team2.library.dbtest1.util.DBOperator;
 
-public class post_page extends AppCompatActivity {
+public class PostPage extends AppCompatActivity {
 
     private ListView listView;
     private TextView post_title;
@@ -113,7 +106,7 @@ public class post_page extends AppCompatActivity {
             // String cofine = cursor.getString(4);
             // String stname = cursor.getString(5);
             //Toast.makeText(getApplicationContext(),"Student Name: " + st_first_name+ "\nPost Title: " + post_title+ "\nPost Description: " + post_desc, Toast.LENGTH_LONG).show();
-           /* Intent intent = new Intent(getApplicationContext(), post_page.class);
+           /* Intent intent = new Intent(getApplicationContext(), PostPage.class);
             intent.putExtra("item_name", item_name);
             intent.putExtra("item_desc", item_desc);
             intent.putExtra("item_price", item_price);
@@ -126,7 +119,7 @@ public class post_page extends AppCompatActivity {
         int id=view.getId();
         if(id==R.id.goback_btn)
         {
-            Intent intent = new Intent(getApplicationContext(), ShowlistActivity.class);
+            Intent intent = new Intent(getApplicationContext(), ShowBuyListActivity.class);
             startActivity(intent);
         }
         else if(id==R.id.add_wishlist)

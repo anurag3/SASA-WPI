@@ -6,6 +6,8 @@ import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
 import android.database.sqlite.SQLiteOpenHelper;
 
+import team2.library.dbtest1.unused.DBContact;
+
 /**
  * Created by Chandan on 12/6/2015.
  */

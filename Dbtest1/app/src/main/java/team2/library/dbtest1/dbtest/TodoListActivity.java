@@ -21,7 +21,7 @@ public class TodoListActivity extends ActionBarActivity {
     private SQLController dbcon;
     private ListView listView;
 
-    @Override
+  /*  @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.fragment_emp_list);
@@ -81,6 +81,6 @@ public class TodoListActivity extends ActionBarActivity {
             return true;
         }
         return super.onOptionsItemSelected(item);
-    }
+    }*/
 
 }
