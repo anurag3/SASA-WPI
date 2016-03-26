@@ -95,7 +95,7 @@ public class PostSelectedPageTest extends AppCompatActivity {
             System.out.println("Queried User ID"+post_user_id);
             if (post_user_id== LoginActivity.user_id)
             {
-                UpdatePost(view);
+                UpdatePost(view, item_id);
             }
             else
             {
@@ -113,20 +113,33 @@ public class PostSelectedPageTest extends AppCompatActivity {
         }
     }
 
-    private void UpdatePost(View view) {
+    private void UpdatePost(View view, final String item_id) {
         AlertDialog.Builder alert = new AlertDialog.Builder(this);
         final AlertDialog dialog;
         LayoutInflater inflater = (LayoutInflater)
                 this.getSystemService(Context.LAYOUT_INFLATER_SERVICE);
 
-        View v1 = inflater.inflate(R.layout.add_to_wishlist,null);
+        View v1 = inflater.inflate(R.layout.update_item,null);
 
         alert.setView(v1);
         alert.setPositiveButton("Update",
                 new DialogInterface.OnClickListener() {
                     public void onClick(DialogInterface dialog, int whichButton) {
 
-                    }});
+                    }
+                });
+
+        alert.setNegativeButton("Delete",
+                new DialogInterface.OnClickListener() {
+                    public void onClick(DialogInterface dialog, int whichButton) {
+                        String value[] = new String[1];
+                        value[0] = item_id;
+                        Cursor cursor1 = DBOperator.getInstance().execQuery(SQLCommand.getitemid2,value);
+                    }
+
+                });
+        dialog = alert.create();
+        dialog.show();
     }
 
     private void AddtoWishlistDialog(View view, final String id) {

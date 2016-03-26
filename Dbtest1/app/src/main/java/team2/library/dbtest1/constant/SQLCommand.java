@@ -106,6 +106,7 @@ public abstract class SQLCommand
     //PostSelectedPageTest
     public static String getpostdetails = "SELECT POST.post_id AS _id, post_title, post_desc FROM POST where post_id = ?";
     public static String getuserid = "SELECT user_id FROM POST where post_id = ?";
+    public static String getitemid2 = "DELETE FROM ITEM where item_id = ?";
 
 }
 

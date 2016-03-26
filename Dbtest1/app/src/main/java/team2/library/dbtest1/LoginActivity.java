@@ -14,7 +14,7 @@ import team2.library.dbtest1.util.DBOperator;
 
 public class LoginActivity extends AppCompatActivity {
 
-
+//test
     EditText et1,et2;
     public static String user_id;
     DBHelper helper = new DBHelper(this);
