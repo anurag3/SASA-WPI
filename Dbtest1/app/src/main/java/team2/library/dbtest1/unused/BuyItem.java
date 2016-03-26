@@ -1,4 +1,4 @@
-package team2.library.dbtest1;
+package team2.library.dbtest1.unused;
 
 import android.annotation.SuppressLint;
 import android.content.Intent;
@@ -8,6 +8,7 @@ import android.support.v7.app.AppCompatActivity;
 import android.widget.ListView;
 import android.widget.SimpleCursorAdapter;
 
+import team2.library.dbtest1.R;
 import team2.library.dbtest1.util.DBOperator;
 
 

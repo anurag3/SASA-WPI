@@ -90,7 +90,7 @@ public abstract class SQLCommand
     public static String showwishlist = "SELECT ITEM.item_id AS _id,item_name, item_price FROM ITEM,WISHLISTDETAILS,WISHLIST WHERE WISHLISTDETAILS.item_id=ITEM.item_id AND WISHLISTDETAILS.wish_id=WISHLIST.wish_id AND WISHLIST.wish_id=?";
 
     //MajorList Queries
-    public static String getpostdetails = "SELECT post_title, post_desc FROM POST";
+    public static String getpostdetails1 = "SELECT post_title, post_desc FROM POST";
     public static String getposttitle = "SELECT post_title, post_desc FROM POST WHERE post_id=?";
     public static String getitemdetails = "SELECT ITEM.item_id AS _id, item_name, item_desc, item_price FROM ITEM, POST WHERE ITEM.post_id=POST.post_id AND POST.post_id=?";
     public static String getwishid = "SELECT wish_id FROM WISHLIST where user_id=?";
@@ -104,6 +104,8 @@ public abstract class SQLCommand
     public static String insertitem = "INSERT INTO ITEM VALUES (?,?,?,?,?,?,?)";
 
     //PostSelectedPageTest
-    public static String getpostdetails1 = "SELECT POST.post_id AS _id, post_title, post_desc FROM POST where post_id = ?";
+    public static String getpostdetails = "SELECT POST.post_id AS _id, post_title, post_desc FROM POST where post_id = ?";
+    public static String getuserid = "SELECT user_id FROM POST where post_id = ?";
+
 }
 
