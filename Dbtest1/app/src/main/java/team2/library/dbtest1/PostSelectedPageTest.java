@@ -64,6 +64,7 @@ public class PostSelectedPageTest extends AppCompatActivity {
                 getApplicationContext(), R.layout.major_list, cursor2,
                 from, to, SimpleCursorAdapter.IGNORE_ITEM_VIEW_TYPE);
         listView.setAdapter(adapter);
+        adapter.notifyDataSetChanged();
 
 
     }
@@ -93,6 +94,7 @@ public class PostSelectedPageTest extends AppCompatActivity {
             StringArray stringArray1 = new StringArray();
             String ars1[][]= stringArray1.toStr(cursor1);
             String post_user_id = ars1 [0][0];
+<<<<<<< HEAD
             System.out.println("Queried User ID"+post_user_id);
             System.out.println("Logged in User ID"+LoginActivity.user_id);
 
@@ -100,10 +102,17 @@ public class PostSelectedPageTest extends AppCompatActivity {
             {
                 UpdatePost(view, item_id);
                 System.out.print("Item id: " + item_id);
+=======
+            System.out.println("Queried User ID = "+post_user_id);
+            System.out.println("Logged In User ID = "+LoginActivity.user_id);
+            if (post_user_id.equals(LoginActivity.user_id))
+            {
+                UpdatePost(item_id);
+>>>>>>> df9bfee9f996b300440840087304c52b5aa842c0
             }
             else
             {
-                AddtoWishlistDialog(view, item_id);
+                AddtoWishlistDialog(item_id);
             }
            /* String getwishid= SQLCommand.getwishid;
             String userid[] = new String[1];
@@ -117,17 +126,21 @@ public class PostSelectedPageTest extends AppCompatActivity {
         }
     }
 
+<<<<<<< HEAD
     private void UpdatePost(View view, final String item_id) {
 
         System.out.print("Item ID: "+item_id);
+=======
+    private void UpdatePost(final String item_id) {
+>>>>>>> df9bfee9f996b300440840087304c52b5aa842c0
         AlertDialog.Builder alert = new AlertDialog.Builder(this);
         final AlertDialog dialog;
         LayoutInflater inflater = (LayoutInflater)
                 this.getSystemService(Context.LAYOUT_INFLATER_SERVICE);
 
-        View v1 = inflater.inflate(R.layout.update_item,null);
+        View v2 = inflater.inflate(R.layout.update_item,null);
 
-        alert.setView(v1);
+        alert.setView(v2);
         alert.setPositiveButton("Update",
                 new DialogInterface.OnClickListener() {
                     public void onClick(DialogInterface dialog, int whichButton) {
@@ -142,7 +155,14 @@ public class PostSelectedPageTest extends AppCompatActivity {
                     public void onClick(DialogInterface dialog, int whichButton) {
                         String value[] = new String[1];
                         value[0] = item_id;
+<<<<<<< HEAD
                         Cursor cursor1 = DBOperator.getInstance().execQuery(SQLCommand.deleteitem, value);
+=======
+
+                        Cursor cursor1 = DBOperator.getInstance().execQuery(SQLCommand.getitemid2, value);
+                        DBOperator.getInstance();
+                        //Toast.makeText(PostSelectedPageTest.this, item_id+"has been deleted", Toast.LENGTH_SHORT).show();
+>>>>>>> df9bfee9f996b300440840087304c52b5aa842c0
                     }
 
                 });
@@ -150,7 +170,7 @@ public class PostSelectedPageTest extends AppCompatActivity {
         dialog.show();
     }
 
-    private void AddtoWishlistDialog(View view, final String id) {
+    private void AddtoWishlistDialog(final String id) {
 
         AlertDialog.Builder alert = new AlertDialog.Builder(this);
         final AlertDialog dialog;

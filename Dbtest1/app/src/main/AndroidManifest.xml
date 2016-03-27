@@ -47,7 +47,11 @@
         <activity android:name=".ProfilePage"></activity>
         <activity android:name=".WishList"></activity>
         <activity android:name=".PostSelectedPageTest"></activity>
+<<<<<<< HEAD
         <activity android:name=".UpdateItemDetails"></activity>
+=======
+        <activity android:name=".EventRegistation"></activity>
+>>>>>>> df9bfee9f996b300440840087304c52b5aa842c0
 
     </application>
 

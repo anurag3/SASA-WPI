@@ -108,8 +108,15 @@ public abstract class SQLCommand
     public static String getuserid = "SELECT user_id FROM POST where post_id = ?";
     public static String deleteitem = "DELETE FROM ITEM where item_id = ?";
 
+<<<<<<< HEAD
     //UpdateItemDetails
     public static String getitemdetails_updatePage = "SELECT item_name, item_qoh, item_price, item_desc, cat_name FROM ITEM, CATEGORY WHERE ITEM.cat_id=CATEGORY.cat_id AND ITEM.item_id=?   ";
     public static String updateItemDetails = "UPDATE item set item_name=?, item_qoh=?, item_price=?, item_desc=?, cat_id=? where item_id=?";
+=======
+    //MainActivity
+    public static String showeventlist = "SELECT event_id AS _id, event_title, event_desc FROM EVENT";
+    public static String adminflag = "SELECT user_admin_flag FROM USER WHERE user_id = ?";
+
+>>>>>>> df9bfee9f996b300440840087304c52b5aa842c0
 }
 
