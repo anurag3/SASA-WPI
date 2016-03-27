@@ -108,5 +108,8 @@ public abstract class SQLCommand
     public static String getuserid = "SELECT user_id FROM POST where post_id = ?";
     public static String getitemid2 = "DELETE FROM ITEM where item_id = ?";
 
+    //MainActivity
+    public static String showeventlist ="SELECT event_id AS _id, event_title, event_desc FROM EVENT";
+
 }
 
