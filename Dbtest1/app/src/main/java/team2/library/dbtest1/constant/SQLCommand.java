@@ -109,7 +109,8 @@ public abstract class SQLCommand
     public static String getitemid2 = "DELETE FROM ITEM where item_id = ?";
 
     //MainActivity
-    public static String showeventlist ="SELECT event_id AS _id, event_title, event_desc FROM EVENT";
+    public static String showeventlist = "SELECT event_id AS _id, event_title, event_desc FROM EVENT";
+    public static String adminflag = "SELECT user_admin_flag FROM USER WHERE user_id = ?";
 
 }
 

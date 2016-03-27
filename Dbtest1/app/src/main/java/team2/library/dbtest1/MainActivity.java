@@ -44,10 +44,25 @@ public class MainActivity extends AppCompatActivity {
         adapter.notifyDataSetChanged();
         }
 
+    private class ItemClickListener implements android.widget.AdapterView.OnItemClickListener {
+        @Override
+        public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
+
+            Cursor cursor = (Cursor) listView.getItemAtPosition(position);
+            String event_id = cursor.getString(0);
+            String event_title = cursor.getString(1);
+            String event_desc = cursor.getString(2);
+
+            Intent intent = new Intent(getApplicationContext(), EventRegistation.class);
+            intent.putExtra("event_id",event_id);
+            intent.putExtra("event_title",event_title);
+            intent.putExtra("event_desc",event_desc);
+            startActivity(intent);
+        }
+    }
     public void onClick(View view)
     {
-
-        String sql="";
+        //String sql="";
         int id=view.getId();
         if (id==R.id.buy_button)
         {
@@ -93,10 +108,5 @@ public class MainActivity extends AppCompatActivity {
     }*/
 
 
-    private class ItemClickListener implements android.widget.AdapterView.OnItemClickListener {
-        @Override
-        public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
 
-        }
-    }
 }
