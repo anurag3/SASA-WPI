@@ -9,6 +9,7 @@ import android.widget.Button;
 import android.widget.RadioButton;
 import android.widget.RadioGroup;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import team2.library.dbtest1.constant.SQLCommand;
 import team2.library.dbtest1.util.DBOperator;
@@ -64,20 +65,55 @@ public class EventRegistation extends AppCompatActivity implements View.OnClickL
 
     @Override
     public void onClick(View v) {
-        int selectedId = radioGroup.getCheckedRadioButtonId();
-        radioButton=(RadioButton)findViewById(selectedId);
-        if (radioButton == radioButtonYes)
+
+        int id = v.getId();
+        if (id == R.id.submitbtn)
         {
-            
-            System.out.println("COOOOOOLLLLLL");
+            int selectedId = radioGroup.getCheckedRadioButtonId();
+            radioButton = (RadioButton) findViewById(selectedId);
+            if (radioButton == radioButtonYes) {
+
+                Intent intent = this.getIntent();
+                String event_id = intent.getStringExtra("event_id");
+                System.out.println("Event_id = " + event_id);
+
+                String count = SQLCommand.getedid;
+                Cursor cursor = DBOperator.getInstance().execQuery(count);
+                StringArray stringArray = new StringArray();
+                String ars[][] = stringArray.toStr(cursor);
+                int count1 = Integer.parseInt(ars[0][0]);
+                count1 = count1 + 1;
+
+                String value[] = new String[3];
+                value[0] = Integer.toString(count1);
+                value[1] = event_id;
+                value[2] = LoginActivity.user_id;
+
+                String sql = SQLCommand.eventregisteration;
+                DBOperator.getInstance().execSQL(sql, value);
+
+                Toast.makeText(getApplicationContext(), "You have been registered for the event", Toast.LENGTH_SHORT).show();
+                Intent intent1 = new Intent(this, MainActivity.class);
+                this.startActivity(intent1);
+            } else if (radioButton == radioButtonNo) {
+                Toast.makeText(getApplicationContext(), "You have not registered for the event", Toast.LENGTH_SHORT).show();
+                Intent intent1 = new Intent(this, MainActivity.class);
+                this.startActivity(intent1);
+            } else {
+                Toast.makeText(getApplicationContext(), "Please select your registration status for the event", Toast.LENGTH_SHORT).show();
+            }
         }
-        else if(radioButton == radioButtonNo)
+        if (id == R.id.update_event_btn)
         {
-            System.out.println("Nooooooooooo");
-        }
-        else
-        {
-            System.out.println("None Selected");
+            Intent intent = this.getIntent();
+            String event_id = intent.getStringExtra("event_id");
+            String event_title = intent.getStringExtra("event_title");
+            String event_desc = intent.getStringExtra("event_desc");
+            Intent intent1 = new Intent(this, UpdateEventDetails.class);
+            intent.putExtra("event_id",event_id);
+            intent.putExtra("event_title",event_title);
+            intent.putExtra("event_desc",event_desc);
+            this.startActivity(intent1);
         }
     }
 }
