@@ -106,7 +106,10 @@ public abstract class SQLCommand
     //PostSelectedPageTest
     public static String getpostdetails = "SELECT POST.post_id AS _id, post_title, post_desc FROM POST where post_id = ?";
     public static String getuserid = "SELECT user_id FROM POST where post_id = ?";
-    public static String getitemid2 = "DELETE FROM ITEM where item_id = ?";
+    public static String deleteitem = "DELETE FROM ITEM where item_id = ?";
 
+    //UpdateItemDetails
+    public static String getitemdetails_updatePage = "SELECT item_name, item_qoh, item_price, item_desc, cat_name FROM ITEM, CATEGORY WHERE ITEM.cat_id=CATEGORY.cat_id AND ITEM.item_id=?   ";
+    public static String updateItemDetails = "UPDATE item set item_name=?, item_qoh=?, item_price=?, item_desc=?, cat_id=? where item_id=?";
 }
 

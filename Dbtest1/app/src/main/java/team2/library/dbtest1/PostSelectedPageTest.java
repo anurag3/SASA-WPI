@@ -3,6 +3,7 @@ package team2.library.dbtest1;
 import android.app.AlertDialog;
 import android.content.Context;
 import android.content.DialogInterface;
+import android.content.Intent;
 import android.database.Cursor;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
@@ -93,9 +94,12 @@ public class PostSelectedPageTest extends AppCompatActivity {
             String ars1[][]= stringArray1.toStr(cursor1);
             String post_user_id = ars1 [0][0];
             System.out.println("Queried User ID"+post_user_id);
-            if (post_user_id== LoginActivity.user_id)
+            System.out.println("Logged in User ID"+LoginActivity.user_id);
+
+            if (post_user_id.equals(LoginActivity.user_id))
             {
                 UpdatePost(view, item_id);
+                System.out.print("Item id: " + item_id);
             }
             else
             {
@@ -114,6 +118,8 @@ public class PostSelectedPageTest extends AppCompatActivity {
     }
 
     private void UpdatePost(View view, final String item_id) {
+
+        System.out.print("Item ID: "+item_id);
         AlertDialog.Builder alert = new AlertDialog.Builder(this);
         final AlertDialog dialog;
         LayoutInflater inflater = (LayoutInflater)
@@ -125,7 +131,9 @@ public class PostSelectedPageTest extends AppCompatActivity {
         alert.setPositiveButton("Update",
                 new DialogInterface.OnClickListener() {
                     public void onClick(DialogInterface dialog, int whichButton) {
-
+                        Intent intent = new Intent(getApplicationContext(), UpdateItemDetails.class);
+                        intent.putExtra("item_id", item_id);
+                        startActivity(intent);
                     }
                 });
 
@@ -134,7 +142,7 @@ public class PostSelectedPageTest extends AppCompatActivity {
                     public void onClick(DialogInterface dialog, int whichButton) {
                         String value[] = new String[1];
                         value[0] = item_id;
-                        Cursor cursor1 = DBOperator.getInstance().execQuery(SQLCommand.getitemid2,value);
+                        Cursor cursor1 = DBOperator.getInstance().execQuery(SQLCommand.deleteitem, value);
                     }
 
                 });

@@ -47,6 +47,7 @@
         <activity android:name=".ProfilePage"></activity>
         <activity android:name=".WishList"></activity>
         <activity android:name=".PostSelectedPageTest"></activity>
+        <activity android:name=".UpdateItemDetails"></activity>
 
     </application>
 

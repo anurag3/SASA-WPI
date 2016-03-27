@@ -70,8 +70,7 @@ public class MainActivity extends AppCompatActivity {
     }
 
     public void onBackPressed() {
-        Intent intent = new Intent(this, LoginActivity.class);
-        this.startActivity(intent);
+
     }
 
 
