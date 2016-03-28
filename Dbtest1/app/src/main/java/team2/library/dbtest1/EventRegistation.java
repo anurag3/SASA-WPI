@@ -11,6 +11,8 @@ import android.widget.RadioGroup;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import java.sql.SQLOutput;
+
 import team2.library.dbtest1.constant.SQLCommand;
 import team2.library.dbtest1.util.DBOperator;
 
@@ -23,6 +25,7 @@ public class EventRegistation extends AppCompatActivity implements View.OnClickL
     private RadioGroup radioGroup;
     private RadioButton radioButton,radioButtonYes,radioButtonNo;
     private Button button;
+    private String event_id,event_title,event_desc;
 
 
     protected void onCreate(Bundle savedInstanceState) {
@@ -32,8 +35,9 @@ public class EventRegistation extends AppCompatActivity implements View.OnClickL
         event_desc1 = (TextView) this.findViewById(R.id.event_desc);
 
         Intent intent = this.getIntent();
-        String event_title = intent.getStringExtra("event_title");
-        String event_desc = intent.getStringExtra("event_desc");
+        event_id = intent.getStringExtra("event_id");
+        event_title = intent.getStringExtra("event_title");
+        event_desc = intent.getStringExtra("event_desc");
 
         event_title1.setText(event_title);
         event_desc1.setText(event_desc);
@@ -71,10 +75,8 @@ public class EventRegistation extends AppCompatActivity implements View.OnClickL
         {
             int selectedId = radioGroup.getCheckedRadioButtonId();
             radioButton = (RadioButton) findViewById(selectedId);
-            if (radioButton == radioButtonYes) {
-
-                Intent intent = this.getIntent();
-                String event_id = intent.getStringExtra("event_id");
+            if (radioButton == radioButtonYes)
+            {
                 System.out.println("Event_id = " + event_id);
 
                 String count = SQLCommand.getedid;
@@ -105,15 +107,18 @@ public class EventRegistation extends AppCompatActivity implements View.OnClickL
         }
         if (id == R.id.update_event_btn)
         {
-            Intent intent = this.getIntent();
+            /*Intent intent = this.getIntent();
             String event_id = intent.getStringExtra("event_id");
             String event_title = intent.getStringExtra("event_title");
+
             String event_desc = intent.getStringExtra("event_desc");
-            Intent intent1 = new Intent(this, UpdateEventDetails.class);
+            String event_title = getString(R.id.event_title);
+            String event_desc = getString(R.id.event_desc);*/
+            Intent intent = new Intent(this, UpdateEventDetails.class);
             intent.putExtra("event_id",event_id);
             intent.putExtra("event_title",event_title);
             intent.putExtra("event_desc",event_desc);
-            this.startActivity(intent1);
+            this.startActivity(intent);
         }
     }
 }

@@ -122,7 +122,8 @@ public abstract class SQLCommand
     public static String getedid = "SELECT ed_id FROM EVENTDETAILS ORDER BY ed_id desc";
     public static String eventregisteration = "INSERT INTO EVENTDETAILS VALUES(?,?,?)";
 
-
+    //UpdateEventDetails
+    public static String updateEventDetails = "UPDATE EVENT SET event_title=?, event_desc=? WHERE event_id=? ";
 
 }
 

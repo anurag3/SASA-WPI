@@ -51,6 +51,7 @@
         <activity android:name=".UpdateItemDetails"></activity>
 
         <activity android:name=".EventRegistation"></activity>
+        <activity android:name=".UpdateEventDetails"></activity>
 
 
     </application>
