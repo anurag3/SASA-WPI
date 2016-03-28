@@ -102,17 +102,17 @@ public class MainActivity extends AppCompatActivity {
         }
     }
 
-<<<<<<< HEAD
+
     public void onBackPressed() {
 
     }
-=======
+
   /*  public void onBackPressed() {
         Intent intent = new Intent(this, LoginActivity.class);
         this.startActivity(intent);
     }*/
 
->>>>>>> df9bfee9f996b300440840087304c52b5aa842c0
+
 
 
 }

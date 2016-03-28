@@ -94,21 +94,16 @@ public class PostSelectedPageTest extends AppCompatActivity {
             StringArray stringArray1 = new StringArray();
             String ars1[][]= stringArray1.toStr(cursor1);
             String post_user_id = ars1 [0][0];
-<<<<<<< HEAD
-            System.out.println("Queried User ID"+post_user_id);
+
+            System.out.println("Queried User ID" + post_user_id);
             System.out.println("Logged in User ID"+LoginActivity.user_id);
 
             if (post_user_id.equals(LoginActivity.user_id))
             {
-                UpdatePost(view, item_id);
-                System.out.print("Item id: " + item_id);
-=======
-            System.out.println("Queried User ID = "+post_user_id);
-            System.out.println("Logged In User ID = "+LoginActivity.user_id);
-            if (post_user_id.equals(LoginActivity.user_id))
-            {
+                //UpdatePost(view, item_id);
                 UpdatePost(item_id);
->>>>>>> df9bfee9f996b300440840087304c52b5aa842c0
+                System.out.print("Item id: " + item_id);
+
             }
             else
             {
@@ -126,13 +121,13 @@ public class PostSelectedPageTest extends AppCompatActivity {
         }
     }
 
-<<<<<<< HEAD
-    private void UpdatePost(View view, final String item_id) {
 
-        System.out.print("Item ID: "+item_id);
-=======
+  //  private void UpdatePost(View view, final String item_id) {
+
+        //System.out.print("Item ID: "+item_id);
+
     private void UpdatePost(final String item_id) {
->>>>>>> df9bfee9f996b300440840087304c52b5aa842c0
+
         AlertDialog.Builder alert = new AlertDialog.Builder(this);
         final AlertDialog dialog;
         LayoutInflater inflater = (LayoutInflater)
@@ -155,15 +150,14 @@ public class PostSelectedPageTest extends AppCompatActivity {
                     public void onClick(DialogInterface dialog, int whichButton) {
                         String value[] = new String[1];
                         value[0] = item_id;
-<<<<<<< HEAD
-                        Cursor cursor1 = DBOperator.getInstance().execQuery(SQLCommand.deleteitem, value);
-=======
 
-                        Cursor cursor1 = DBOperator.getInstance().execQuery(SQLCommand.getitemid2, value);
-                        DBOperator.getInstance();
+                        Cursor cursor1 = DBOperator.getInstance().execQuery(SQLCommand.deleteitem, value);
+
+
+                        //Cursor cursor1 = DBOperator.getInstance().execQuery(SQLCommand.deleteitem, value);
+                        //DBOperator.getInstance();
                         //Toast.makeText(PostSelectedPageTest.this, item_id+"has been deleted", Toast.LENGTH_SHORT).show();
->>>>>>> df9bfee9f996b300440840087304c52b5aa842c0
-                    }
+                   }
 
                 });
         dialog = alert.create();

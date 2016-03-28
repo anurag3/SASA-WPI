@@ -92,8 +92,13 @@ public class UpdateItemDetails extends AppCompatActivity implements View.OnClick
             tempCat[0]= update_item_category.getAdapter().toString();
             Cursor cursor1 = DBOperator.getInstance().execQuery("select cat_id from category where cat_name=?", tempCat);
             StringArray stringArray1 = new StringArray();
-            String category[][] = stringArray1.toStr(cursor1);
-//            System.out.println("Category ID: "+category[0][0]);
+
+            String[][] category = stringArray1.toStr(cursor1);
+
+            if(category[0][0]==null)
+                System.out.println("category[][] is null");
+
+            System.out.println("Category ID: "+category[0][0]);
             int c = Integer.parseInt(category[0][0]);
             value[4] = Integer.toString(c);
             value[5] = temp_item_id;
