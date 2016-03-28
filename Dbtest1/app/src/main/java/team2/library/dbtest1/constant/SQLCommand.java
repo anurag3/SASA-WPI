@@ -115,7 +115,13 @@ public abstract class SQLCommand
 
     //MainActivity
     public static String showeventlist = "SELECT event_id AS _id, event_title, event_desc FROM EVENT";
+
+
+    //EventRegistration
     public static String adminflag = "SELECT user_admin_flag FROM USER WHERE user_id = ?";
+    public static String getedid = "SELECT ed_id FROM EVENTDETAILS ORDER BY ed_id desc";
+    public static String eventregisteration = "INSERT INTO EVENTDETAILS VALUES(?,?,?)";
+
 
 
 }
