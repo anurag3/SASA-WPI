@@ -1,4 +1,4 @@
-package team2.library.dbtest1;
+package team2.library.dbtest1.unused;
 
 import android.content.Intent;
 import android.database.Cursor;
@@ -10,6 +10,8 @@ import android.widget.ListView;
 import android.widget.SimpleCursorAdapter;
 import android.widget.TextView;
 
+import team2.library.dbtest1.R;
+import team2.library.dbtest1.ShowBuyListActivity;
 import team2.library.dbtest1.constant.SQLCommand;
 import team2.library.dbtest1.dbtest.SQLController;
 import team2.library.dbtest1.util.DBOperator;

@@ -26,8 +26,10 @@ import team2.library.dbtest1.util.DBOperator;
 public class PostSelectedPageTest extends AppCompatActivity {
 
     private ListView listView;
-
+    private String item_name;
     private TextView post_title1,post_desc1;
+    private String post_id;
+
     protected void onCreate(Bundle savedInstanceState) {
         System.gc();
         super.onCreate(savedInstanceState);
@@ -39,11 +41,13 @@ public class PostSelectedPageTest extends AppCompatActivity {
         post_desc1 =(TextView) this.findViewById(R.id.post_desc1);
 
 
+        Intent intent = this.getIntent();
+        post_id =  intent.getStringExtra("post_id");
 
         String value [] = new String[1];
-        value [0] = ShowBuyListActivity.postId;
+        value [0] = post_id;
 
-        //Get Post Details using the PostId from ShowBuyList
+        //Get Post Details using the PostId from ShowBuyList or MyPost
         Cursor cursor = DBOperator.getInstance().execQuery(SQLCommand.getpostdetails, value);
         StringArray stringArray = new StringArray();
         String ars[][]= stringArray.toStr(cursor);
@@ -73,8 +77,8 @@ public class PostSelectedPageTest extends AppCompatActivity {
         public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
             Cursor cursor = (Cursor) listView.getItemAtPosition(position);
             String item_id = cursor.getString(0);
-
-
+            String item_name1 = cursor.getString(1);
+            item_name = item_name1;
             /*int count1,count2;
             String [] value = new String[1];
             value[0] = item_id;
@@ -88,7 +92,7 @@ public class PostSelectedPageTest extends AppCompatActivity {
 
             System.out.println(count1);*/
             String value [] = new String[1];
-            value [0] = ShowBuyListActivity.postId;
+            value [0] = post_id;
             //Update or Delete Button Condition
             Cursor cursor1 = DBOperator.getInstance().execQuery(SQLCommand.getuserid,value);
             StringArray stringArray1 = new StringArray();
@@ -102,7 +106,7 @@ public class PostSelectedPageTest extends AppCompatActivity {
             {
                 //UpdatePost(view, item_id);
                 UpdatePost(item_id);
-                System.out.print("Item id: " + item_id);
+
 
             }
             else
@@ -150,10 +154,9 @@ public class PostSelectedPageTest extends AppCompatActivity {
                     public void onClick(DialogInterface dialog, int whichButton) {
                         String value[] = new String[1];
                         value[0] = item_id;
+                        DBOperator.getInstance().execSQL(SQLCommand.deleteitem, value);
 
-                        Cursor cursor1 = DBOperator.getInstance().execQuery(SQLCommand.deleteitem, value);
-
-
+                        Toast.makeText(PostSelectedPageTest.this, item_name + "has been deleted", Toast.LENGTH_SHORT).show();
                         //Cursor cursor1 = DBOperator.getInstance().execQuery(SQLCommand.deleteitem, value);
                         //DBOperator.getInstance();
                         //Toast.makeText(PostSelectedPageTest.this, item_id+"has been deleted", Toast.LENGTH_SHORT).show();
@@ -203,7 +206,7 @@ public class PostSelectedPageTest extends AppCompatActivity {
 
 
 
-                        Toast.makeText(PostSelectedPageTest.this, id + " has been added to Your Wishlist", Toast.LENGTH_SHORT).show();
+                        Toast.makeText(PostSelectedPageTest.this, item_name + " has been added to Your Wishlist", Toast.LENGTH_SHORT).show();
                     }
                 });
         alert.setNegativeButton("No", new DialogInterface.OnClickListener() {

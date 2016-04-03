@@ -37,10 +37,12 @@ public class ShowBuyListActivity extends AppCompatActivity {
         listView.setOnItemClickListener(new ItemClickListener());
 
         // get the sql string delivered from the QueryActivity
-        Intent intent = this.getIntent();
+        //Intent intent = this.getIntent();
         //String sql = intent.getStringExtra("sql");
         // execute the sql
-        Cursor cursor = DBOperator.getInstance().execQuery(SQLCommand.showbuylist, null);
+        String[] value= new String[1];
+        value[0]= LoginActivity.user_id;
+        Cursor cursor = DBOperator.getInstance().execQuery(SQLCommand.showbuylist, value);
         String[] from = new String[]{"user_first_name","user_last_name","post_title","post_desc"};
         int[] to = new int[]{R.id.user_first_name, R.id.user_last_name,R.id.post_title, R.id.post_desc};
         // bind the data to list

@@ -21,6 +21,7 @@ public class UpdateEventDetails extends AppCompatActivity implements View.OnClic
 
 
     protected void onCreate(Bundle savedInstanceState) {
+        //System.gc();
         super.onCreate(savedInstanceState);
         setContentView(R.layout.update_event_details);
 
@@ -41,16 +42,19 @@ public class UpdateEventDetails extends AppCompatActivity implements View.OnClic
     @Override
     public void onClick(View v) {
         String value[] = new String[3];
+
         value[0] = event_title1.getText().toString().trim();
         value[1] = event_desc1.getText().toString().trim();
-        value[2] = event_id;
-        System.out.println("event id = "+event_id);
-        System.out.println("event_title1 = "+event_title1.getText().toString().trim());
-        System.out.println("event_desc1 = "+event_desc1.getText().toString().trim());
-        System.out.println(value);
-        String updateEventDetails = SQLCommand.updateEventDetails;
-        DBOperator.getInstance().execQuery(updateEventDetails,value);
-        Toast.makeText(getApplicationContext(), "Event Details Successfully Updated", Toast.LENGTH_LONG).show();
+        value[2] = event_id.trim();
+
+        System.out.println("event_title1 = " + value[0]);
+        System.out.println("event_desc1 = " + value[1]);
+        System.out.println("event id = " +value[2]);
+
+        String sql = SQLCommand.updateEventDetails;
+        DBOperator.getInstance().execSQL(sql,value);
+
+        Toast.makeText(getApplicationContext(), "Event Details Successfully Updated", Toast.LENGTH_SHORT).show();
         Intent intent = new Intent(this, MainActivity.class);
         this.startActivity(intent);
     }

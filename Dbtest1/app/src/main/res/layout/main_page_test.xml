@@ -28,7 +28,8 @@
             android:layout_height="wrap_content"
             android:text="Posts"
             android:id="@+id/my_post"
-            android:layout_weight="1" />
+            android:layout_weight="1"
+            android:onClick="onClick" />
 
         <Button
             android:layout_width="0dp"

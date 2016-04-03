@@ -35,7 +35,7 @@
         <activity android:name=".dbtest.ModifyTodoActivity" />
         <activity android:name=".dbtest.TodoListActivity" />
         <activity
-            android:name=".PostPage"
+            android:name=".unused.PostPage"
             android:label="@string/app_name"></activity>
         <activity android:name=".unused.ForgotPassword"></activity>
         <activity android:name=".SellPage"></activity>
@@ -52,6 +52,7 @@
 
         <activity android:name=".EventRegistation"></activity>
         <activity android:name=".UpdateEventDetails"></activity>
+        <activity android:name=".MyPost"></activity>
 
 
     </application>

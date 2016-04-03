@@ -23,15 +23,19 @@ public class ProfilePage extends AppCompatActivity implements View.OnClickListen
     private EditText profile_phone;
     private EditText profile_pass;
     private Button update;
+
     protected void onCreate(Bundle savedInstanceState) {
         System.gc();
+
         super.onCreate(savedInstanceState);
         setContentView(R.layout.profile_page);
+
         profile_firstname=(EditText) this.findViewById(R.id.profile_firstname);
         profile_lastname=(EditText) this.findViewById(R.id.profile_lastname);
         profile_email=(EditText) this.findViewById(R.id.profile_email);
         profile_phone=(EditText) this.findViewById(R.id.profile_phone);
         profile_pass=(EditText) this.findViewById(R.id.profile_pass);
+
         String [] value= new String[1];
         value[0]=LoginActivity.user_id;
         String sql= SQLCommand.showprofile;

@@ -61,7 +61,7 @@ public abstract class SQLCommand
     public static String logincheck = "SELECT user_id,user_email,user_pass FROM USER";
 
     //ShowBuyListActivity Queries
-    public static String showbuylist = "SELECT POST.post_id as _id, user_first_name, user_last_name, post_title, post_desc FROM POST, USER WHERE USER.user_id==POST.user_id";
+    public static String showbuylist = "SELECT POST.post_id as _id, user_first_name, user_last_name, post_title, post_desc FROM POST, USER WHERE USER.user_id==POST.user_id AND USER.user_id!=?";
 
     public static String QUERY_category_spinner = "SELECT cat_id as _id, cat_name FROM CATEGORY";
     public static String QUERY_category_spinner_1 = "SELECT POST.post_id as _id, user_first_name, user_last_name, post_title, post_desc FROM CATEGORY, POST, USER, ITEM WHERE USER.user_id==POST.user_id AND POST.post_id=ITEM.post_id AND ITEM.cat_id=CATEGORY.cat_id AND cat_name='Study Books'";
@@ -110,8 +110,8 @@ public abstract class SQLCommand
 
 
     //UpdateItemDetails
-    public static String getitemdetails_updatePage = "SELECT item_name, item_qoh, item_price, item_desc, cat_name FROM ITEM, CATEGORY WHERE ITEM.cat_id=CATEGORY.cat_id AND ITEM.item_id=?   ";
-    public static String updateItemDetails = "UPDATE item set item_name=?, item_qoh=?, item_price=?, item_desc=?, cat_id=? where item_id=?";
+    public static String getitemdetails_updatePage = "SELECT item_name, item_qoh, item_price, item_desc, cat_id FROM ITEM WHERE ITEM.item_id=?";
+    public static String updateItemDetails = "UPDATE ITEM set item_name=?, item_qoh=?, item_price=?, item_desc=?, cat_id=? where item_id=?";
 
     //MainActivity
     public static String showeventlist = "SELECT event_id AS _id, event_title, event_desc FROM EVENT";
@@ -123,7 +123,11 @@ public abstract class SQLCommand
     public static String eventregisteration = "INSERT INTO EVENTDETAILS VALUES(?,?,?)";
 
     //UpdateEventDetails
-    public static String updateEventDetails = "UPDATE EVENT SET event_title=?, event_desc=? WHERE event_id=? ";
+    public static String updateEventDetails = "UPDATE EVENT SET event_title=?,event_desc=? WHERE event_id=?";
+
+    //MyPost
+    public static String mypostlist = "SELECT POST.post_id as _id, user_first_name, user_last_name, post_title, post_desc FROM POST, USER WHERE USER.user_id==POST.user_id AND USER.user_id=?";
+
 
 }
 

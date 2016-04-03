@@ -29,6 +29,7 @@ public class EventRegistation extends AppCompatActivity implements View.OnClickL
 
 
     protected void onCreate(Bundle savedInstanceState) {
+        System.gc();
         super.onCreate(savedInstanceState);
         setContentView(R.layout.event_registration);
         event_title1 = (TextView) this.findViewById(R.id.event_title);
@@ -97,10 +98,12 @@ public class EventRegistation extends AppCompatActivity implements View.OnClickL
                 Toast.makeText(getApplicationContext(), "You have been registered for the event", Toast.LENGTH_SHORT).show();
                 Intent intent1 = new Intent(this, MainActivity.class);
                 this.startActivity(intent1);
+                finish();
             } else if (radioButton == radioButtonNo) {
                 Toast.makeText(getApplicationContext(), "You have not registered for the event", Toast.LENGTH_SHORT).show();
                 Intent intent1 = new Intent(this, MainActivity.class);
                 this.startActivity(intent1);
+                finish();
             } else {
                 Toast.makeText(getApplicationContext(), "Please select your registration status for the event", Toast.LENGTH_SHORT).show();
             }
@@ -119,6 +122,7 @@ public class EventRegistation extends AppCompatActivity implements View.OnClickL
             intent.putExtra("event_title",event_title);
             intent.putExtra("event_desc",event_desc);
             this.startActivity(intent);
+            finish();
         }
     }
 }

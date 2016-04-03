@@ -56,7 +56,7 @@ public class MainActivity extends AppCompatActivity {
             Intent intent = new Intent(getApplicationContext(), EventRegistation.class);
             intent.putExtra("event_id",event_id);
             intent.putExtra("event_title",event_title);
-            intent.putExtra("event_desc",event_desc);
+            intent.putExtra("event_desc", event_desc);
             startActivity(intent);
         }
     }
@@ -88,6 +88,14 @@ public class MainActivity extends AppCompatActivity {
             Intent intent = new Intent(this, NewDeals.class);
             this.startActivity(intent);
         }
+        if(view.getId()==R.id.wish_button){
+            Intent intent = new Intent(this, WishList.class);
+            this.startActivity(intent);
+        }
+        if(view.getId()==R.id.my_post){
+            Intent intent = new Intent(this, MyPost.class);
+            this.startActivity(intent);
+        }
         if(view.getId()==R.id.prof_button){
             Intent it = new Intent(this,ProfilePage.class);
             startActivity(it);
@@ -96,10 +104,7 @@ public class MainActivity extends AppCompatActivity {
             Intent intent = new Intent(this, LoginActivity.class);
             this.startActivity(intent);
         }
-        if(view.getId()==R.id.wish_button){
-            Intent intent = new Intent(this, WishList.class);
-            this.startActivity(intent);
-        }
+
     }
 
 
