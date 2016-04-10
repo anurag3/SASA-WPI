@@ -5,6 +5,7 @@ import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.database.Cursor;
+import android.net.Uri;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.view.LayoutInflater;
@@ -23,12 +24,12 @@ import team2.library.dbtest1.util.DBOperator;
 /**
  * Created by Anurag on 3/12/2016.
  */
-public class PostSelectedPageTest extends AppCompatActivity {
+public class PostSelectedPageTest extends AppCompatActivity implements View.OnClickListener {
 
     private ListView listView;
     private String item_name;
-    private TextView post_title1,post_desc1;
-    private String post_id;
+    private TextView post_title1,post_desc1,seller_name,seller_contact;
+    private String user_first_name,user_last_name,user_phone,post_title,post_desc,post_id;
 
     protected void onCreate(Bundle savedInstanceState) {
         System.gc();
@@ -39,14 +40,21 @@ public class PostSelectedPageTest extends AppCompatActivity {
         listView.setOnItemClickListener(new ItemClickListener());
         post_title1 =(TextView) this.findViewById(R.id.post_title1);
         post_desc1 =(TextView) this.findViewById(R.id.post_desc1);
+        seller_name =(TextView) this.findViewById(R.id.contact_name);
+        seller_contact =(TextView) this.findViewById(R.id.contact_details);
 
 
         Intent intent = this.getIntent();
+        user_first_name =  intent.getStringExtra("user_first_name");
+        user_last_name =  intent.getStringExtra("user_last_name");
+        user_phone =  intent.getStringExtra("user_phone");
+        post_title =  intent.getStringExtra("post_title");
+        post_desc =  intent.getStringExtra("post_desc");
         post_id =  intent.getStringExtra("post_id");
 
         String value [] = new String[1];
         value [0] = post_id;
-
+        /*
         //Get Post Details using the PostId from ShowBuyList or MyPost
         Cursor cursor = DBOperator.getInstance().execQuery(SQLCommand.getpostdetails, value);
         StringArray stringArray = new StringArray();
@@ -54,10 +62,13 @@ public class PostSelectedPageTest extends AppCompatActivity {
         String post_title = ars [0][1];
         String post_desc = ars [0][2];
         post_title1.setText(post_title);
+        post_desc1.setText(post_desc);*/
+
+        post_title1.setText(post_title);
         post_desc1.setText(post_desc);
-
-
-
+        //String seller_details = String.
+        seller_name.setText(user_first_name+" "+user_last_name);
+        seller_contact.setText(user_phone);
 
         //Get Item Details and Display them
         Cursor cursor2 = DBOperator.getInstance().execQuery(SQLCommand.getitemdetails, value);
@@ -71,6 +82,19 @@ public class PostSelectedPageTest extends AppCompatActivity {
         adapter.notifyDataSetChanged();
 
 
+    }
+
+    @Override
+    public void onClick(View v) {
+        int id = v.getId();
+        if(id==R.id.contact_details)
+        {
+            //Intent intent = new Intent(Intent.ACTION_DIAL, Uri.fromParts("Phone:", user_phone, null));
+            String uri = "tel:" + user_phone.trim() ;
+            Intent intent = new Intent(Intent.ACTION_DIAL);
+            intent.setData(Uri.parse(uri));
+            startActivity(intent);
+        }
     }
 
     private class ItemClickListener implements AdapterView.OnItemClickListener {
@@ -102,16 +126,25 @@ public class PostSelectedPageTest extends AppCompatActivity {
             System.out.println("Queried User ID" + post_user_id);
             System.out.println("Logged in User ID"+LoginActivity.user_id);
 
-            if (post_user_id.equals(LoginActivity.user_id))
-            {
-                //UpdatePost(view, item_id);
-                UpdatePost(item_id);
 
+            if(ShowBuyListActivity.BLFlag==1||HotDeals1.BLFlag==1||NewDeals1.BLFlag==1 ) {
+                if (post_user_id.equals(LoginActivity.user_id)) {
+                    //UpdatePost(view, item_id);
+                    UpdatePost(item_id);
+                    ShowBuyListActivity.BLFlag=0;
+                    HotDeals1.BLFlag=0;
+                    NewDeals1.BLFlag=0;
 
+                } else {
+                    AddtoWishlistDialog(item_id);
+                    ShowBuyListActivity.BLFlag=0;
+                    HotDeals1.BLFlag=0;
+                    NewDeals1.BLFlag=0;
+                }
             }
             else
             {
-                AddtoWishlistDialog(item_id);
+                Toast.makeText(PostSelectedPageTest.this, item_name + "already exists in your wishlist", Toast.LENGTH_SHORT).show();
             }
            /* String getwishid= SQLCommand.getwishid;
             String userid[] = new String[1];
@@ -181,26 +214,28 @@ public class PostSelectedPageTest extends AppCompatActivity {
                 new DialogInterface.OnClickListener() {
                     public void onClick(DialogInterface dialog, int whichButton) {
 
-                        String getwishId = SQLCommand.getwishid;
-                        String userid[] = new String[1];
-                        userid[0] = LoginActivity.user_id;
-                        Cursor cursor = DBOperator.getInstance().execQuery(getwishId, userid);
+                        //String getwishId = SQLCommand.getwishid;
+                        /*Cursor cursor = DBOperator.getInstance().execQuery(getwishId, userid);
                         StringArray stringArray = new StringArray();
                         String ars[][] = stringArray.toStr(cursor);
-                        String wishId = Integer.toString(Integer.parseInt(ars[0][0]));
+                        String wishId = Integer.toString(Integer.parseInt(ars[0][0]));*/
 
                         int count1;
                         String getwdid = SQLCommand.getwdid;
-                        Cursor cursor1 = DBOperator.getInstance().execQuery(getwdid, null);
-                        StringArray stringArray1 = new StringArray();
+                        Cursor cursor1 = DBOperator.getInstance().execQuery(getwdid,null);
+                        /*StringArray stringArray1 = new StringArray();
                         String ars1[][] = stringArray1.toStr(cursor1);
                         count1 = Integer.parseInt(ars1[0][0]);
-                        count1 = count1 + 1;
+                        count1 = count1+1;*/
+                        StringArray stringArray = new StringArray();
+                        String ars[][]= stringArray.toStr(cursor1);
+                        count1=Integer.parseInt(ars[0][0]);
+                        count1=count1+1;
 
                         String sql = SQLCommand.addtowishlist;
                         String[] value = new String[3];
                         value[0] = Integer.toString(count1);
-                        value[1] = wishId;
+                        value[1] = LoginActivity.user_id;
                         value[2] = id;
                         DBOperator.getInstance().execSQL(sql, value);
 

@@ -1,26 +1,26 @@
 package team2.library.dbtest1;
 
-        import team2.library.dbtest1.constant.SQLCommand;
-        import team2.library.dbtest1.util.DBOperator;
+import team2.library.dbtest1.constant.SQLCommand;
+import team2.library.dbtest1.util.DBOperator;
 
-        import android.annotation.SuppressLint;
-        import android.content.Intent;
-        import android.database.Cursor;
-        import android.os.Bundle;
-        import android.support.v7.app.AppCompatActivity;
-        import android.view.View;
-        import android.widget.AdapterView;
-        import android.widget.ArrayAdapter;
-        import android.widget.ListView;
-        import android.widget.SimpleCursorAdapter;
-        import android.widget.Spinner;
-        import android.widget.Toast;
-        import android.widget.AdapterView.OnItemClickListener;
+import android.annotation.SuppressLint;
+import android.content.Intent;
+import android.database.Cursor;
+import android.os.Bundle;
+import android.support.v7.app.AppCompatActivity;
+import android.view.View;
+import android.widget.AdapterView;
+import android.widget.ArrayAdapter;
+import android.widget.ListView;
+import android.widget.SimpleCursorAdapter;
+import android.widget.Spinner;
+import android.widget.Toast;
+import android.widget.AdapterView.OnItemClickListener;
 
-        import java.util.ArrayList;
-        import java.util.List;
+import java.util.ArrayList;
+import java.util.List;
 
-public class ShowBuyListActivity extends AppCompatActivity {
+public class HotDeals1 extends AppCompatActivity {
     private ListView listView;
     private Spinner spinner;
 
@@ -43,7 +43,7 @@ public class ShowBuyListActivity extends AppCompatActivity {
         // execute the sql
         String[] value= new String[1];
         value[0]= LoginActivity.user_id;
-        Cursor cursor = DBOperator.getInstance().execQuery(SQLCommand.showbuylist, value);
+        Cursor cursor = DBOperator.getInstance().execQuery(SQLCommand.showhotbuylist, value);
         String[] from = new String[]{"user_first_name","user_last_name","post_title","post_desc"};
         int[] to = new int[]{R.id.user_first_name, R.id.user_last_name,R.id.post_title, R.id.post_desc};
         // bind the data to list
@@ -62,70 +62,70 @@ public class ShowBuyListActivity extends AppCompatActivity {
     }
 
     public void onClick(View v){
-    String sql = "";
+        String sql = "";
 
-    int id=v.getId();
-    if(id==R.id.sortbtn)
-    {
-        String[] value= new String[2];
-        value[0]= LoginActivity.user_id;
+        int id=v.getId();
+        if(id==R.id.sortbtn)
+        {
+            String[] value= new String[2];
+            value[0]= LoginActivity.user_id;
 
-        int pos = spinner.getSelectedItemPosition();
-    if (pos == Spinner.INVALID_POSITION) {
-        //User doesn't choose any query, show warning
-        Toast.makeText(getApplicationContext(), "Please choose a category!", Toast.LENGTH_SHORT).show();
-        return;
-    }
-    if (pos == 0) {
-        Toast.makeText(getApplicationContext(), "Please choose a category!", Toast.LENGTH_SHORT).show();
-        return;
-    }
-    if (pos == 1) {
-        //sql = SQLCommand.QUERY_category_spinner_1;
-        value[1]="300";
-    }
-    if (pos == 2) {
-        value[1]="301";
-        //sql = SQLCommand.QUERY_category_spinner_2;
-    }
-    if (pos == 3) {
-        value[1]="302";
-        //sql = SQLCommand.QUERY_category_spinner_3;
-    }
-    if (pos == 4) {
-        value[1]="303";
-        //sql = SQLCommand.QUERY_category_spinner_4;
-    }
-    if (pos == 5) {
-        value[1]="304";
-        //sql = SQLCommand.QUERY_category_spinner_5;
-    }
-        Cursor cursor = DBOperator.getInstance().execQuery(SQLCommand.query_spinner, value);
-        String[] from = new String[]{"user_first_name","user_last_name","post_title","post_desc"};
-        int[] to = new int[]{R.id.user_first_name, R.id.user_last_name, R.id.post_title, R.id.post_desc};
-        // bind the data to list
-        final SimpleCursorAdapter adapter = new SimpleCursorAdapter(
-                getApplicationContext(), R.layout.buy_listview, cursor,
-                from, to, SimpleCursorAdapter.IGNORE_ITEM_VIEW_TYPE);
-        listView.setAdapter(adapter);
-    }
-    if(id==R.id.clrbtn)
-    {
-        String[] value= new String[1];
-        value[0]= LoginActivity.user_id;
-        Cursor cursor = DBOperator.getInstance().execQuery(SQLCommand.showbuylist, value);
-        String[] from = new String[]{"user_first_name","user_last_name","post_title","post_desc"};
-        int[] to = new int[]{R.id.user_first_name, R.id.user_last_name,R.id.post_title, R.id.post_desc};
-        // bind the data to list
-        final SimpleCursorAdapter adapter = new SimpleCursorAdapter(
-                getApplicationContext(), R.layout.buy_listview, cursor,
-                from, to, SimpleCursorAdapter.IGNORE_ITEM_VIEW_TYPE);
-        listView.setAdapter(adapter);
+            int pos = spinner.getSelectedItemPosition();
+            if (pos == Spinner.INVALID_POSITION) {
+                //User doesn't choose any query, show warning
+                Toast.makeText(getApplicationContext(), "Please choose a category!", Toast.LENGTH_SHORT).show();
+                return;
+            }
+            if (pos == 0) {
+                Toast.makeText(getApplicationContext(), "Please choose a category!", Toast.LENGTH_SHORT).show();
+                return;
+            }
+            if (pos == 1) {
+                //sql = SQLCommand.QUERY_category_spinner_1;
+                value[1]="300";
+            }
+            if (pos == 2) {
+                value[1]="301";
+                //sql = SQLCommand.QUERY_category_spinner_2;
+            }
+            if (pos == 3) {
+                value[1]="302";
+                //sql = SQLCommand.QUERY_category_spinner_3;
+            }
+            if (pos == 4) {
+                value[1]="303";
+                //sql = SQLCommand.QUERY_category_spinner_4;
+            }
+            if (pos == 5) {
+                value[1]="304";
+                //sql = SQLCommand.QUERY_category_spinner_5;
+            }
+            Cursor cursor = DBOperator.getInstance().execQuery(SQLCommand.query_spinner_hot, value);
+            String[] from = new String[]{"user_first_name","user_last_name","post_title","post_desc"};
+            int[] to = new int[]{R.id.user_first_name, R.id.user_last_name, R.id.post_title, R.id.post_desc};
+            // bind the data to list
+            final SimpleCursorAdapter adapter = new SimpleCursorAdapter(
+                    getApplicationContext(), R.layout.buy_listview, cursor,
+                    from, to, SimpleCursorAdapter.IGNORE_ITEM_VIEW_TYPE);
+            listView.setAdapter(adapter);
+        }
+        if(id==R.id.clrbtn)
+        {
+            String[] value= new String[1];
+            value[0]= LoginActivity.user_id;
+            Cursor cursor = DBOperator.getInstance().execQuery(SQLCommand.showhotbuylist, value);
+            String[] from = new String[]{"user_first_name","user_last_name","post_title","post_desc"};
+            int[] to = new int[]{R.id.user_first_name, R.id.user_last_name,R.id.post_title, R.id.post_desc};
+            // bind the data to list
+            final SimpleCursorAdapter adapter = new SimpleCursorAdapter(
+                    getApplicationContext(), R.layout.buy_listview, cursor,
+                    from, to, SimpleCursorAdapter.IGNORE_ITEM_VIEW_TYPE);
+            listView.setAdapter(adapter);
 
-        spinner.setSelection(0);
-    }
+            spinner.setSelection(0);
+        }
 
-}
+    }
 
     public List<String> getAllLabels()
     {
@@ -201,11 +201,9 @@ public class ShowBuyListActivity extends AppCompatActivity {
             intent.putExtra("post_title", post_title);
             intent.putExtra("post_desc", post_desc);
             intent.putExtra("post_id",post_id);
-            BLFlag=1;
+            BLFlag = 1;
             startActivity(intent);
         }
     }
 
 }
-
-

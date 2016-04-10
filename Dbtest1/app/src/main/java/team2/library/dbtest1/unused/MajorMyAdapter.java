@@ -1,8 +1,6 @@
-package team2.library.dbtest1;
+package team2.library.dbtest1.unused;
 
-import android.app.Activity;
 import android.content.Context;
-import android.content.Intent;
 import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -10,6 +8,8 @@ import android.view.View.OnClickListener;
 import android.view.ViewGroup;
 import android.widget.LinearLayout;
 import android.widget.TextView;
+
+import team2.library.dbtest1.R;
 
 public class MajorMyAdapter extends RecyclerView.Adapter<MajorMyAdapter.ViewHolder> {
     private String[][] mDataset;

@@ -29,6 +29,7 @@ public class HotDeals extends AppCompatActivity {
     @Override
 
     protected void onCreate(Bundle savedInstanceState) {
+        System.gc();
         super.onCreate(savedInstanceState);
         setContentView(R.layout.buy_page);
 

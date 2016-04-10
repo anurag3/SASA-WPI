@@ -19,7 +19,7 @@ public class LoginActivity extends AppCompatActivity {
     public static String user_id;
     DBHelper helper = new DBHelper(this);
     protected void onCreate(Bundle savedInstanceState) {
-        //System.gc();
+        System.gc();
         super.onCreate(savedInstanceState);
         setContentView(R.layout.login_page);
         try{
@@ -74,6 +74,7 @@ public class LoginActivity extends AppCompatActivity {
                 user_id=DBOperator.c;
                 Intent intent = new Intent(this, MainActivity.class);
                 this.startActivity(intent);
+                finish();
 
             }else
             {
@@ -130,7 +131,7 @@ public class LoginActivity extends AppCompatActivity {
 
 
 
-
+/*
 
 
 
@@ -191,7 +192,7 @@ public class LoginActivity extends AppCompatActivity {
                 return true;
             }
     }
-
+*/
 
 
         public void nextpage()

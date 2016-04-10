@@ -54,13 +54,15 @@ public class MyPost extends AppCompatActivity implements View.OnClickListener {
             String post_id = cursor.getString(0);
             String user_first_name = cursor.getString(1);
             String user_last_name = cursor.getString(2);
-            String post_title = cursor.getString(3);
-            String post_desc = cursor.getString(4);
+            String user_phone = cursor.getString(3);
+            String post_title = cursor.getString(4);
+            String post_desc = cursor.getString(5);
 
             System.out.println( "Post ID = " + post_id);
             Intent intent = new Intent(getApplicationContext(), PostSelectedPageTest.class);
             intent.putExtra("user_first_name", user_first_name);
             intent.putExtra("user_last_name", user_last_name);
+            intent.putExtra("user_phone", user_phone);
             intent.putExtra("post_title", post_title);
             intent.putExtra("post_desc", post_desc);
             intent.putExtra("post_id",post_id);

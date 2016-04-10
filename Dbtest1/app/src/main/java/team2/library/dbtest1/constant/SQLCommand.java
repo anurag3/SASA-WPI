@@ -61,13 +61,16 @@ public abstract class SQLCommand
     public static String logincheck = "SELECT user_id,user_email,user_pass FROM USER";
 
     //ShowBuyListActivity Queries
-    public static String showbuylist = "SELECT POST.post_id as _id, user_first_name, user_last_name, post_title, post_desc FROM POST, USER WHERE USER.user_id==POST.user_id AND USER.user_id!=?";
+    public static String showbuylist = "SELECT POST.post_id as _id, user_first_name, user_last_name, user_phone, post_title, post_desc FROM POST, USER WHERE USER.user_id==POST.user_id AND USER.user_id!=?";
 
     public static String QUERY_category_spinner = "SELECT cat_id as _id, cat_name FROM CATEGORY";
-    public static String QUERY_category_spinner_1 = "SELECT POST.post_id as _id, user_first_name, user_last_name, post_title, post_desc FROM CATEGORY, POST, USER, ITEM WHERE USER.user_id==POST.user_id AND POST.post_id=ITEM.post_id AND ITEM.cat_id=CATEGORY.cat_id AND cat_name='Study Books'";
-    public static String QUERY_category_spinner_2 = "SELECT POST.post_id as _id, user_first_name, user_last_name, post_title, post_desc FROM CATEGORY, POST, USER, ITEM WHERE USER.user_id==POST.user_id AND POST.post_id=ITEM.post_id AND ITEM.cat_id=CATEGORY.cat_id AND cat_name='Smart Phone'";
-    public static String QUERY_category_spinner_3 = "SELECT POST.post_id as _id, user_first_name, user_last_name, post_title, post_desc FROM CATEGORY, POST, USER, ITEM WHERE USER.user_id==POST.user_id AND POST.post_id=ITEM.post_id AND ITEM.cat_id=CATEGORY.cat_id AND cat_name='Car'";
-    public static String QUERY_category_spinner_4 = "SELECT POST.post_id as _id, user_first_name, user_last_name, post_title, post_desc FROM CATEGORY, POST, USER, ITEM WHERE USER.user_id==POST.user_id AND POST.post_id=ITEM.post_id AND ITEM.cat_id=CATEGORY.cat_id AND cat_name='Furniture'";
+    public static String QUERY_category_spinner_1 = "SELECT POST.post_id as _id, user_first_name, user_last_name, post_title, post_desc FROM POST, USER, ITEM WHERE USER.user_id==POST.user_id AND POST.post_id=ITEM.post_id AND ITEM.cat_id=300";
+    public static String QUERY_category_spinner_2 = "SELECT POST.post_id as _id, user_first_name, user_last_name, post_title, post_desc FROM POST, USER, ITEM WHERE USER.user_id==POST.user_id AND POST.post_id=ITEM.post_id AND ITEM.cat_id=301";
+    public static String QUERY_category_spinner_3 = "SELECT POST.post_id as _id, user_first_name, user_last_name, post_title, post_desc FROM POST, USER, ITEM WHERE USER.user_id==POST.user_id AND POST.post_id=ITEM.post_id AND ITEM.cat_id=302";
+    public static String QUERY_category_spinner_4 = "SELECT POST.post_id as _id, user_first_name, user_last_name, post_title, post_desc FROM POST, USER, ITEM WHERE USER.user_id==POST.user_id AND POST.post_id=ITEM.post_id AND ITEM.cat_id=303";
+    public static String QUERY_category_spinner_5 = "SELECT POST.post_id as _id, user_first_name, user_last_name, post_title, post_desc FROM POST, USER, ITEM WHERE USER.user_id==POST.user_id AND POST.post_id=ITEM.post_id AND ITEM.cat_id=304";
+
+    public static String query_spinner = "SELECT POST.post_id as _id, user_first_name, user_last_name, user_phone, post_title, post_desc FROM POST, USER, ITEM WHERE USER.user_id==POST.user_id AND POST.post_id=ITEM.post_id AND USER.user_id!=? AND ITEM.cat_id=?";
 
     public static String gethitcount = "SELECT post_hit_counter FROM POST WHERE post_id=?";
     public static String updatehitcount = "UPDATE POST SET post_hit_counter=? WHERE post_id=?";
@@ -75,10 +78,12 @@ public abstract class SQLCommand
 
 
     //HotDeals Queries
-    public static String showhotbuylist = "SELECT POST.post_id as _id, user_first_name, user_last_name, post_title, post_desc FROM POST, USER WHERE USER.user_id==POST.user_id order by post_hit_counter desc";
+    public static String showhotbuylist = "SELECT POST.post_id as _id, user_first_name, user_last_name, user_phone, post_title, post_desc FROM POST, USER WHERE USER.user_id==POST.user_id AND USER.user_id!=? ORDER BY post_hit_counter desc";
+    public static String query_spinner_hot = "SELECT POST.post_id as _id, user_first_name, user_last_name, user_phone, post_title, post_desc FROM POST, USER, ITEM WHERE USER.user_id==POST.user_id AND POST.post_id=ITEM.post_id AND USER.user_id!=? AND ITEM.cat_id=? ORDER BY post_hit_counter desc";
 
     //NewDeals Queries
-    public static String shownewbuylist = "SELECT POST.post_id as _id, user_first_name, user_last_name, post_title, post_desc FROM POST, USER WHERE USER.user_id==POST.user_id order by post_id desc" ;
+    public static String shownewbuylist = "SELECT POST.post_id as _id, user_first_name, user_last_name, user_phone, post_title, post_desc FROM POST, USER WHERE USER.user_id==POST.user_id AND USER.user_id!=? ORDER BY post_id desc" ;
+    public static String query_spinner_new = "SELECT POST.post_id as _id, user_first_name, user_last_name, user_phone, post_title, post_desc FROM POST, USER, ITEM WHERE USER.user_id==POST.user_id AND POST.post_id=ITEM.post_id AND USER.user_id!=? AND ITEM.cat_id=? ORDER BY POST.post_id desc";
 
 
     //ProfilePage Queries
@@ -87,15 +92,17 @@ public abstract class SQLCommand
 
     //WishList Queries
     public static String getwishlist = "SELECT wish_id FROM WISHLIST WHERE user_id=?";
-    public static String showwishlist = "SELECT ITEM.item_id AS _id,item_name, item_price FROM ITEM,WISHLISTDETAILS,WISHLIST WHERE WISHLISTDETAILS.item_id=ITEM.item_id AND WISHLISTDETAILS.wish_id=WISHLIST.wish_id AND WISHLIST.wish_id=?";
+    public static String showwishlist = "SELECT ITEM.item_id AS _id, item_name, item_price FROM ITEM,WISHLISTDETAILS WHERE WISHLISTDETAILS.item_id=ITEM.item_id AND WISHLISTDETAILS.user_id=?";
+
+    public static String getposterdetails = "SELECT POST.post_id AS _id, user_first_name, user_last_name, user_phone, post_title, post_desc FROM USER, POST, ITEM WHERE ITEM.post_id = POST.post_id AND POST.user_id = USER.user_id AND item_id=?";
 
     //MajorList Queries
     public static String getpostdetails1 = "SELECT post_title, post_desc FROM POST";
     public static String getposttitle = "SELECT post_title, post_desc FROM POST WHERE post_id=?";
     public static String getitemdetails = "SELECT ITEM.item_id AS _id, item_name, item_desc, item_price FROM ITEM, POST WHERE ITEM.post_id=POST.post_id AND POST.post_id=?";
-    public static String getwishid = "SELECT wish_id FROM WISHLIST where user_id=?";
+    //public static String getwishid = "SELECT wd_id FROM WISHLISTDETAILS where user_id=?";
     public static String getwdid = "SELECT wd_id FROM WISHLISTDETAILS ORDER BY wd_id desc";
-    public static String addtowishlist = "INSERT INTO WISHLISTDETAILS (wd_id,wish_id,item_id) VALUES (?,?,?)";
+    public static String addtowishlist = "INSERT INTO WISHLISTDETAILS (wd_id,user_id,item_id) VALUES (?,?,?)";
 
     //AddNewItem
     public static String getpostid = "SELECT post_id FROM POST ORDER BY post_id desc";
@@ -114,7 +121,8 @@ public abstract class SQLCommand
     public static String updateItemDetails = "UPDATE ITEM set item_name=?, item_qoh=?, item_price=?, item_desc=?, cat_id=? where item_id=?";
 
     //MainActivity
-    public static String showeventlist = "SELECT event_id AS _id, event_title, event_desc FROM EVENT";
+    public static String showeventlist = "SELECT event_id AS _id, event_title, event_desc FROM EVENT ORDER BY event_id desc";
+    public static String getname = "SELECT user_first_name FROM USER WHERE user_id=?";
 
 
     //EventRegistration
@@ -126,7 +134,7 @@ public abstract class SQLCommand
     public static String updateEventDetails = "UPDATE EVENT SET event_title=?,event_desc=? WHERE event_id=?";
 
     //MyPost
-    public static String mypostlist = "SELECT POST.post_id as _id, user_first_name, user_last_name, post_title, post_desc FROM POST, USER WHERE USER.user_id==POST.user_id AND USER.user_id=?";
+    public static String mypostlist = "SELECT POST.post_id as _id, user_first_name, user_last_name, user_phone, post_title, post_desc FROM POST, USER WHERE USER.user_id==POST.user_id AND USER.user_id=?";
 
 
 }

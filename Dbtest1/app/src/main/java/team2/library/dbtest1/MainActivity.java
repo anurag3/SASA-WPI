@@ -42,6 +42,13 @@ public class MainActivity extends AppCompatActivity {
                 from, to, SimpleCursorAdapter.IGNORE_ITEM_VIEW_TYPE);
         listView.setAdapter(adapter);
         adapter.notifyDataSetChanged();
+
+        String[] value= new String[1];
+        value[0] = LoginActivity.user_id;
+        Cursor cursor1 = DBOperator.getInstance().execQuery(SQLCommand.getname, value);
+        StringArray stringArray = new StringArray();
+        String username[][] = stringArray.toStr(cursor1);
+        setTitle("Welcome "+username[0][0]);
         }
 
     private class ItemClickListener implements android.widget.AdapterView.OnItemClickListener {
@@ -80,12 +87,12 @@ public class MainActivity extends AppCompatActivity {
         }
         if(id==R.id.hot_text)
         {
-            Intent intent = new Intent(this, HotDeals.class);
+            Intent intent = new Intent(this, HotDeals1.class);
             this.startActivity(intent);
         }
         if(id==R.id.new_text)
         {
-            Intent intent = new Intent(this, NewDeals.class);
+            Intent intent = new Intent(this, NewDeals1.class);
             this.startActivity(intent);
         }
         if(view.getId()==R.id.wish_button){
@@ -103,14 +110,13 @@ public class MainActivity extends AppCompatActivity {
         if(view.getId()==R.id.logout_button){
             Intent intent = new Intent(this, LoginActivity.class);
             this.startActivity(intent);
+            finish();
         }
 
     }
 
 
-    public void onBackPressed() {
 
-    }
 
   /*  public void onBackPressed() {
         Intent intent = new Intent(this, LoginActivity.class);

@@ -1,4 +1,4 @@
-package team2.library.dbtest1;
+package team2.library.dbtest1.unused;
 
 import android.app.AlertDialog;
 import android.content.Context;
@@ -13,6 +13,10 @@ import android.view.View;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import team2.library.dbtest1.LoginActivity;
+import team2.library.dbtest1.R;
+import team2.library.dbtest1.ShowBuyListActivity;
+import team2.library.dbtest1.StringArray;
 import team2.library.dbtest1.constant.SQLCommand;
 import team2.library.dbtest1.util.DBOperator;
 
@@ -97,7 +101,7 @@ public class MajorList extends AppCompatActivity implements RecyclerViewClickLis
                 new DialogInterface.OnClickListener() {
                     public void onClick(DialogInterface dialog, int whichButton) {
 
-                        String getwishId = SQLCommand.getwishid;
+                        String getwishId = SQLCommand.getwdid;
                         String userid[] = new String[1];
                         userid[0] = LoginActivity.user_id;
                         Cursor cursor = DBOperator.getInstance().execQuery(getwishId, userid);

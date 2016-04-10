@@ -9,8 +9,7 @@
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:orientation="horizontal"
-        android:background="#ac2b37">
+        android:orientation="horizontal">
 
 
         <Button
@@ -21,7 +20,12 @@
             android:layout_centerVertical="true"
             android:layout_centerHorizontal="true"
             android:onClick="onClick"
-            android:layout_weight="1" />
+            android:layout_weight="1"
+            android:background="@drawable/rounded_buttons1"
+            android:layout_marginTop="2dp"
+            android:layout_marginLeft="5dp"
+            android:layout_marginRight="5dp"
+            android:textColor="#ffffff" />
 
         <Button
             android:layout_width="0dp"
@@ -29,7 +33,12 @@
             android:text="Posts"
             android:id="@+id/my_post"
             android:layout_weight="1"
-            android:onClick="onClick" />
+            android:onClick="onClick"
+            android:background="@drawable/rounded_buttons1"
+            android:layout_marginLeft="5dp"
+            android:layout_marginTop="2dp"
+            android:layout_marginRight="5dp"
+            android:textColor="#ffffff" />
 
         <Button
             android:layout_width="0dp"
@@ -39,7 +48,12 @@
             android:layout_alignParentTop="true"
             android:layout_alignParentStart="true"
             android:onClick="onClick"
-            android:layout_weight="1" />
+            android:layout_weight="1"
+            android:background="@drawable/rounded_buttons1"
+            android:layout_marginLeft="5dp"
+            android:layout_marginTop="2dp"
+            android:layout_marginRight="5dp"
+            android:textColor="#ffffff" />
 
         <Button
             android:layout_width="0dp"
@@ -49,7 +63,12 @@
             android:onClick="onClick"
             android:layout_alignParentTop="true"
             android:layout_alignParentEnd="true"
-            android:layout_weight="1" />
+            android:layout_weight="1"
+            android:background="@drawable/rounded_buttons1"
+            android:layout_marginLeft="5dp"
+            android:layout_marginTop="2dp"
+            android:layout_marginRight="5dp"
+            android:textColor="#ffffff" />
 
     </LinearLayout>
 
@@ -68,13 +87,16 @@
             android:layout_weight="3">
 
             <TextView
-                android:layout_width="wrap_content"
+                android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:text="Event List"
                 android:id="@+id/textView3"
                 android:typeface="serif"
                 android:textStyle="bold"
-                android:textSize="20sp" />
+                android:textSize="20sp"
+                android:textColor="#000000"
+                android:background="#cfd8dc"
+                android:gravity="center" />
 
             <ListView
                 android:layout_width="match_parent"
@@ -86,7 +108,7 @@
             android:orientation="horizontal"
             android:layout_width="match_parent"
             android:layout_height="0dp"
-            android:layout_weight="2">
+            android:layout_weight="0.5">
 
             <Button
                 android:layout_width="0dp"
@@ -94,32 +116,32 @@
                 android:text="Buy"
                 android:id="@+id/buy_button"
                 android:onClick="onClick"
-                android:textSize="60sp"
-                android:textStyle="bold"
-                android:background="@drawable/rounded_buttons"
+                android:textSize="30sp"
+                android:background="@drawable/rounded_buttons1"
                 android:layout_alignParentTop="true"
                 android:layout_alignParentStart="true"
                 android:gravity="center_vertical|center_horizontal"
                 android:layout_weight="1"
-                android:layout_margin="10dp" />
+                android:layout_margin="10dp"
+                android:textColor="#ffffff" />
 
             <Button
                 android:layout_width="0dp"
                 android:layout_height="match_parent"
                 android:text="Sell"
                 android:id="@+id/sell_button"
-                android:textSize="60sp"
-                android:textStyle="bold"
-                android:background="@drawable/rounded_buttons"
+                android:textSize="30sp"
+                android:background="@drawable/rounded_buttons1"
                 android:layout_alignTop="@+id/buy_button"
                 android:layout_alignParentEnd="true"
                 android:onClick="onClick"
                 android:gravity="center_vertical|center_horizontal"
                 android:layout_weight="1"
-                android:layout_margin="10dp" />
+                android:layout_margin="10dp"
+                android:textColor="#ffffff" />
         </LinearLayout>
 
-        <LinearLayout
+        <!--LinearLayout
             android:orientation="horizontal"
             android:layout_width="match_parent"
             android:layout_height="0dp"
@@ -127,11 +149,11 @@
 
             <TextView
                 android:layout_width="0dp"
-                android:layout_height="wrap_content"
+                android:layout_height="match_parent"
                 android:text="New \nDeals"
                 android:id="@+id/new_text"
                 android:background="@drawable/rounded_text"
-                android:textSize="50sp"
+                android:textSize="30sp"
                 android:layout_alignTop="@+id/hot_text"
                 android:layout_alignEnd="@+id/sell_button"
                 android:onClick="onClick"
@@ -142,11 +164,11 @@
 
             <TextView
                 android:layout_width="0dp"
-                android:layout_height="wrap_content"
+                android:layout_height="match_parent"
                 android:text="Hot \nDeals"
                 android:id="@+id/hot_text"
                 android:background="@drawable/rounded_text"
-                android:textSize="50sp"
+                android:textSize="30sp"
                 android:layout_below="@+id/buy_button"
                 android:layout_alignEnd="@+id/buy_button"
                 android:onClick="onClick"
@@ -154,7 +176,7 @@
                 android:gravity="center"
                 android:layout_marginLeft="5dp"
                 android:layout_marginRight="5dp" />
-        </LinearLayout>
+        </LinearLayout-->
 
         <!-- Floating Action Button-->
         <!--<android.support.design.widget.FloatingActionButton
