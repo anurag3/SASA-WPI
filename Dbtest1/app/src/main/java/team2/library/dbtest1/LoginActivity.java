@@ -30,7 +30,7 @@ public class LoginActivity extends AppCompatActivity {
 
         //Font on LoginActivity page
         TextView tv=(TextView)findViewById(R.id.textView);
-        Typeface face=Typeface.createFromAsset(getAssets(),"fonts/Vizel.otf");
+        Typeface face=Typeface.createFromAsset(getAssets(), "fonts/jm.ttf");
         tv.setTypeface(face);
 
         et1 = (EditText) this.findViewById(R.id.userName);

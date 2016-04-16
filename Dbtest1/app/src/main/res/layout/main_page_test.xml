@@ -12,7 +12,7 @@
         android:orientation="horizontal">
 
 
-        <Button
+        <android.support.v7.widget.AppCompatButton
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:text="wishlist"
@@ -21,26 +21,24 @@
             android:layout_centerHorizontal="true"
             android:onClick="onClick"
             android:layout_weight="1"
-            android:background="@drawable/rounded_buttons1"
             android:layout_marginTop="2dp"
-            android:layout_marginLeft="5dp"
-            android:layout_marginRight="5dp"
-            android:textColor="#ffffff" />
+            android:layout_marginLeft="2dp"
+            android:layout_marginRight="1dp"
+            android:layout_marginBottom="2dp" />
 
-        <Button
+        <android.support.v7.widget.AppCompatButton
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:text="Posts"
             android:id="@+id/my_post"
             android:layout_weight="1"
             android:onClick="onClick"
-            android:background="@drawable/rounded_buttons1"
-            android:layout_marginLeft="5dp"
+            android:layout_marginLeft="1dp"
             android:layout_marginTop="2dp"
-            android:layout_marginRight="5dp"
-            android:textColor="#ffffff" />
+            android:layout_marginRight="1dp"
+            android:layout_marginBottom="2dp" />
 
-        <Button
+        <android.support.v7.widget.AppCompatButton
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:text="@string/Profile"
@@ -49,13 +47,12 @@
             android:layout_alignParentStart="true"
             android:onClick="onClick"
             android:layout_weight="1"
-            android:background="@drawable/rounded_buttons1"
-            android:layout_marginLeft="5dp"
+            android:layout_marginLeft="1dp"
             android:layout_marginTop="2dp"
-            android:layout_marginRight="5dp"
-            android:textColor="#ffffff" />
+            android:layout_marginRight="1dp"
+            android:layout_marginBottom="2dp" />
 
-        <Button
+        <android.support.v7.widget.AppCompatButton
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:text="Logout"
@@ -64,11 +61,10 @@
             android:layout_alignParentTop="true"
             android:layout_alignParentEnd="true"
             android:layout_weight="1"
-            android:background="@drawable/rounded_buttons1"
-            android:layout_marginLeft="5dp"
+            android:layout_marginLeft="1dp"
             android:layout_marginTop="2dp"
-            android:layout_marginRight="5dp"
-            android:textColor="#ffffff" />
+            android:layout_marginRight="2dp"
+            android:layout_marginBottom="2dp" />
 
     </LinearLayout>
 
@@ -95,7 +91,7 @@
                 android:textStyle="bold"
                 android:textSize="20sp"
                 android:textColor="#000000"
-                android:background="#cfd8dc"
+                android:background="@color/ListviewColor"
                 android:gravity="center" />
 
             <ListView
@@ -108,9 +104,10 @@
             android:orientation="horizontal"
             android:layout_width="match_parent"
             android:layout_height="0dp"
-            android:layout_weight="0.5">
+            android:layout_weight="0.7"
+            android:background="@android:color/transparent">
 
-            <Button
+            <android.support.v7.widget.AppCompatButton
                 android:layout_width="0dp"
                 android:layout_height="match_parent"
                 android:text="Buy"
@@ -125,7 +122,7 @@
                 android:layout_margin="10dp"
                 android:textColor="#ffffff" />
 
-            <Button
+            <android.support.v7.widget.AppCompatButton
                 android:layout_width="0dp"
                 android:layout_height="match_parent"
                 android:text="Sell"

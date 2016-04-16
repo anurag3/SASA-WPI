@@ -18,7 +18,8 @@
         android:textSize="50sp"
         android:focusable="false"
         android:paddingTop="50dp"
-        android:gravity="center_horizontal" />
+        android:gravity="center_horizontal"
+        android:textColor="@color/ButtonColor" />
 
     <android.support.design.widget.TextInputLayout
         android:layout_width="match_parent"

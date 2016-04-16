@@ -4,11 +4,13 @@
     <color name="colorPrimaryDark">#D50000</color>
     <color name="colorAccent">#607D8B</color>
 
-    <color name="ColorPrimary">#607D8B6</color>
-    <color name="ColorPrimaryDark">#455a64</color>
+    <color name="ColorPrimary">#3F51B5</color>
+    <color name="ColorPrimaryDark">#1A237E</color>
     <color name="ColorAccent">#FFC107</color>
     <color name="colorTextPrimary">#212121</color>
     <color name="colorTextSecondary">#727272</color>
     <color name="tabsScrollColor">#FFC107</color>
+    <color name="ButtonColor">#3f51b5</color>
+    <color name="ListviewColor">#78909C</color>
 
 </resources>

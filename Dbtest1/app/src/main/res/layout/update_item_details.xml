@@ -93,7 +93,7 @@
         android:layout_height="match_parent"
         android:layout_gravity="center_horizontal">
 
-        <Button
+        <android.support.v7.widget.AppCompatButton
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:text="HOME BUTTON"
@@ -102,7 +102,7 @@
             android:layout_centerHorizontal="true"
             android:onClick="onClick" />
 
-        <Button
+        <android.support.v7.widget.AppCompatButton
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:text="UPDATE POST"

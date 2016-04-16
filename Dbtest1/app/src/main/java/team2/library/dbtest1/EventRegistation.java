@@ -11,8 +11,6 @@ import android.widget.RadioGroup;
 import android.widget.TextView;
 import android.widget.Toast;
 
-import java.sql.SQLOutput;
-
 import team2.library.dbtest1.constant.SQLCommand;
 import team2.library.dbtest1.util.DBOperator;
 
@@ -24,7 +22,7 @@ public class EventRegistation extends AppCompatActivity implements View.OnClickL
     private TextView event_title1,event_desc1;
     private RadioGroup radioGroup;
     private RadioButton radioButton,radioButtonYes,radioButtonNo;
-    private Button button;
+    private Button update_button,report_button;
     private String event_id,event_title,event_desc;
 
 
@@ -47,7 +45,8 @@ public class EventRegistation extends AppCompatActivity implements View.OnClickL
         radioButtonYes = (RadioButton) this.findViewById(R.id.radioButtonYes);
         radioButtonNo = (RadioButton) this.findViewById(R.id.radioButtonNo);
 
-        button = (Button) this.findViewById(R.id.update_event_btn);
+        update_button = (Button) this.findViewById(R.id.update_event_btn);
+        report_button = (Button) this.findViewById(R.id.event_attendance_btn);
 
         String [] value = new String[1];
         value[0] = LoginActivity.user_id;
@@ -62,7 +61,8 @@ public class EventRegistation extends AppCompatActivity implements View.OnClickL
 
         if(count==1)
         {
-            button.setVisibility(View.VISIBLE);
+            update_button.setVisibility(View.VISIBLE);
+            report_button.setVisibility(View.VISIBLE);
         }
 
     }
@@ -123,6 +123,11 @@ public class EventRegistation extends AppCompatActivity implements View.OnClickL
             intent.putExtra("event_desc",event_desc);
             this.startActivity(intent);
             finish();
+        }
+        if (id == R.id.event_attendance_btn)
+        {
+            Intent intent = new Intent(this, PieActivity.class);
+            this.startActivity(intent);
         }
     }
 }

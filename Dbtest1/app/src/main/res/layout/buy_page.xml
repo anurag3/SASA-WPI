@@ -28,7 +28,7 @@
         android:layout_weight="1"
         android:orientation="horizontal">
 
-        <Button
+        <android.support.v7.widget.AppCompatButton
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:text="Sort"
@@ -52,7 +52,9 @@
 <LinearLayout
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
-    android:orientation="vertical">
+    android:orientation="vertical"
+    android:background="@color/ListviewColor"
+    android:paddingTop="5dp">
 
 <ListView
 android:id="@+id/buy_list"

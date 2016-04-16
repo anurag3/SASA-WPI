@@ -25,7 +25,7 @@
         android:minLines="5" >
     </EditText>
 
-    <Button
+    <android.support.v7.widget.AppCompatButton
         android:id="@+id/add_record"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
