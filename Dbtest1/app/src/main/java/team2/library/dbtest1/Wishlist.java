@@ -80,6 +80,7 @@ public class WishList extends AppCompatActivity {
             intent.putExtra("post_desc", post_desc);
             intent.putExtra("post_id",post_id);
             startActivity(intent);
+            finish();
         }
     }
 }

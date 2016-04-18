@@ -67,6 +67,7 @@ public class MyPost extends AppCompatActivity implements View.OnClickListener {
             intent.putExtra("post_desc", post_desc);
             intent.putExtra("post_id",post_id);
             startActivity(intent);
+            finish();
         }
     }
 }

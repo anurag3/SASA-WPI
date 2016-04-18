@@ -31,6 +31,7 @@ public class SellPage extends AppCompatActivity {
         {
             Intent intent = new Intent(this, MainActivity.class);
             this.startActivity(intent);
+            finish();
         }
 
         if (id==R.id.button2) {
@@ -66,6 +67,7 @@ public class SellPage extends AppCompatActivity {
             }*/
             Intent intent = new Intent(this, AddNewItem.class);
             this.startActivity(intent);
+            finish();
         }
         }
     }

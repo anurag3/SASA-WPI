@@ -1,5 +1,6 @@
 package team2.library.dbtest1;
 
+import android.content.Intent;
 import android.database.Cursor;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
@@ -78,5 +79,13 @@ public class ProfilePage extends AppCompatActivity implements View.OnClickListen
             DBOperator.getInstance().execSQL(sql, value);
             Toast.makeText(getApplicationContext(),"Profile Updated", Toast.LENGTH_SHORT).show();
         }
+    }
+
+    @Override
+    public void onBackPressed() {
+        super.onBackPressed();
+        Intent intent = new Intent(this, MainActivity.class);
+        this.startActivity(intent);
+        finish();
     }
 }

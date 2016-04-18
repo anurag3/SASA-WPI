@@ -74,6 +74,8 @@
             android:screenOrientation="portrait"></activity>
         <activity android:name=".PieActivity"
             android:screenOrientation="portrait"></activity>
+        <activity android:name=".mppiechart.PieChartActivity"
+            android:screenOrientation="portrait"></activity>
 
 
     </application>

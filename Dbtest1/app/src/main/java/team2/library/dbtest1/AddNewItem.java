@@ -151,6 +151,7 @@ public class AddNewItem extends AppCompatActivity implements View.OnClickListene
 
                 Intent intent = new Intent(this, AddNewItem.class);
                 this.startActivity(intent);
+                finish();
 
             }
         }
@@ -159,6 +160,7 @@ public class AddNewItem extends AppCompatActivity implements View.OnClickListene
             {
                 Intent intent = new Intent(this, MainActivity.class);
                 this.startActivity(intent);
+                finish();
             }
 
     }

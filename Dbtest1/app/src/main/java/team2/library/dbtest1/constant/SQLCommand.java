@@ -129,12 +129,17 @@ public abstract class SQLCommand
     public static String adminflag = "SELECT user_admin_flag FROM USER WHERE user_id = ?";
     public static String getedid = "SELECT ed_id FROM EVENTDETAILS ORDER BY ed_id desc";
     public static String eventregisteration = "INSERT INTO EVENTDETAILS VALUES(?,?,?)";
+    public static String getusercount = "SELECT COUNT(*) FROM USER";
+    public static String getrsvpcount = "SELECT COUNT(*) FROM EVENTDETAILS WHERE event_id=?";
+    public static String rsvpcheck = "SELECT COUNT(*) FROM EVENTDETAILS WHERE event_id=? AND user_id=?";
+
 
     //UpdateEventDetails
     public static String updateEventDetails = "UPDATE EVENT SET event_title=?,event_desc=? WHERE event_id=?";
 
     //MyPost
     public static String mypostlist = "SELECT POST.post_id as _id, user_first_name, user_last_name, user_phone, post_title, post_desc FROM POST, USER WHERE USER.user_id==POST.user_id AND USER.user_id=?";
+
 
 
 }

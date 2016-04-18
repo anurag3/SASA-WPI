@@ -1,24 +1,24 @@
 package team2.library.dbtest1;
 
-        import team2.library.dbtest1.constant.SQLCommand;
-        import team2.library.dbtest1.util.DBOperator;
-
         import android.annotation.SuppressLint;
-        import android.content.Intent;
-        import android.database.Cursor;
-        import android.os.Bundle;
-        import android.support.v7.app.AppCompatActivity;
-        import android.view.View;
-        import android.widget.AdapterView;
-        import android.widget.ArrayAdapter;
-        import android.widget.ListView;
-        import android.widget.SimpleCursorAdapter;
-        import android.widget.Spinner;
-        import android.widget.Toast;
-        import android.widget.AdapterView.OnItemClickListener;
+import android.content.Intent;
+import android.database.Cursor;
+import android.os.Bundle;
+import android.support.v7.app.AppCompatActivity;
+import android.view.View;
+import android.widget.AdapterView;
+import android.widget.AdapterView.OnItemClickListener;
+import android.widget.ArrayAdapter;
+import android.widget.ListView;
+import android.widget.SimpleCursorAdapter;
+import android.widget.Spinner;
+import android.widget.Toast;
 
-        import java.util.ArrayList;
-        import java.util.List;
+import java.util.ArrayList;
+import java.util.List;
+
+import team2.library.dbtest1.constant.SQLCommand;
+import team2.library.dbtest1.util.DBOperator;
 
 public class ShowBuyListActivity extends AppCompatActivity {
     private ListView listView;
@@ -203,6 +203,7 @@ public class ShowBuyListActivity extends AppCompatActivity {
             intent.putExtra("post_id",post_id);
             BLFlag=1;
             startActivity(intent);
+            finish();
         }
     }
 

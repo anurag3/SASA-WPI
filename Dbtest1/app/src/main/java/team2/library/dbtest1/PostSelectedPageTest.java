@@ -11,9 +11,7 @@ import android.support.v7.app.AppCompatActivity;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.widget.AdapterView;
-import android.widget.EditText;
 import android.widget.ListView;
-import android.widget.RelativeLayout;
 import android.widget.SimpleCursorAdapter;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -179,6 +177,7 @@ public class PostSelectedPageTest extends AppCompatActivity implements View.OnCl
                         Intent intent = new Intent(getApplicationContext(), UpdateItemDetails.class);
                         intent.putExtra("item_id", item_id);
                         startActivity(intent);
+                        finish();
                     }
                 });
 
