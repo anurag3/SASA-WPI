@@ -31,6 +31,9 @@ public class EventRegistation extends AppCompatActivity implements View.OnClickL
         System.gc();
         super.onCreate(savedInstanceState);
         setContentView(R.layout.event_registration);
+
+        overridePendingTransition(R.anim.move_right_in_activity, R.anim.move_left_out_activity);
+
         event_title1 = (TextView) this.findViewById(R.id.event_title);
         event_desc1 = (TextView) this.findViewById(R.id.event_desc);
 
@@ -170,5 +173,10 @@ public class EventRegistation extends AppCompatActivity implements View.OnClickL
             intent.putExtra("rsvpcount",rsvpcount);
             this.startActivity(intent);
         }
+    }
+
+    public void onBackPressed() {
+        super.onBackPressed();
+        overridePendingTransition(R.anim.move_left_in_activity, R.anim.move_right_out_activity);
     }
 }

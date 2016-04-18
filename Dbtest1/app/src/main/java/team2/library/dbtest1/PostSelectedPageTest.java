@@ -34,6 +34,8 @@ public class PostSelectedPageTest extends AppCompatActivity implements View.OnCl
         super.onCreate(savedInstanceState);
         setContentView(R.layout.post_click_page);
 
+        overridePendingTransition(R.anim.move_right_in_activity, R.anim.move_left_out_activity);
+
         listView = (ListView) this.findViewById(R.id.post_details);
         listView.setOnItemClickListener(new ItemClickListener());
         post_title1 =(TextView) this.findViewById(R.id.post_title1);
@@ -91,6 +93,7 @@ public class PostSelectedPageTest extends AppCompatActivity implements View.OnCl
             String uri = "tel:" + user_phone.trim() ;
             Intent intent = new Intent(Intent.ACTION_DIAL);
             intent.setData(Uri.parse(uri));
+            overridePendingTransition(R.anim.move_right_in_activity, R.anim.move_left_out_activity);
             startActivity(intent);
         }
     }
@@ -253,7 +256,9 @@ public class PostSelectedPageTest extends AppCompatActivity implements View.OnCl
 
     }
 
-
-
+    public void onBackPressed() {
+        super.onBackPressed();
+        overridePendingTransition(R.anim.move_left_in_activity, R.anim.move_right_out_activity);
+    }
 
 }

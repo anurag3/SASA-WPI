@@ -1,24 +1,13 @@
 package team2.library.dbtest1;
 
-import android.app.AlertDialog;
-import android.content.Context;
-import android.content.DialogInterface;
 import android.content.Intent;
 import android.database.Cursor;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
-import android.view.LayoutInflater;
 import android.view.View;
-import android.widget.AdapterView;
 import android.widget.EditText;
-import android.widget.ListView;
-import android.widget.RelativeLayout;
-import android.widget.SimpleCursorAdapter;
 import android.widget.Spinner;
-import android.widget.TextView;
 import android.widget.Toast;
-
-import java.sql.SQLOutput;
 
 import team2.library.dbtest1.constant.SQLCommand;
 import team2.library.dbtest1.util.DBOperator;
@@ -40,6 +29,9 @@ public class UpdateItemDetails extends AppCompatActivity implements View.OnClick
         //System.gc();
         super.onCreate(savedInstanceState);
         setContentView(R.layout.update_item_details);
+
+        overridePendingTransition(R.anim.move_right_in_activity, R.anim.move_left_out_activity);
+
         update_item_name = (EditText) this.findViewById(R.id.txt_update_item_name);
         update_item_quantity = (EditText) this.findViewById(R.id.txt_update_item_quantity);
         update_item_price = (EditText) this.findViewById(R.id.txt_update_item_price);
@@ -144,5 +136,10 @@ public class UpdateItemDetails extends AppCompatActivity implements View.OnClick
             String itemDetails[][] = stringArray2.toStr(cursor2);*/
         }
 
+    }
+
+    public void onBackPressed() {
+        super.onBackPressed();
+        overridePendingTransition(R.anim.move_left_in_activity, R.anim.move_right_out_activity);
     }
 }

@@ -25,6 +25,8 @@ public class WishList extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.wishlist);
 
+        overridePendingTransition(R.anim.move_right_in_activity, R.anim.move_left_out_activity);
+
         listView = (ListView) this.findViewById(R.id.wish_listView);
 
         String [] value= new String[1];
@@ -82,5 +84,10 @@ public class WishList extends AppCompatActivity {
             startActivity(intent);
             finish();
         }
+    }
+
+    public void onBackPressed() {
+        super.onBackPressed();
+        overridePendingTransition(R.anim.move_left_in_activity, R.anim.move_right_out_activity);
     }
 }

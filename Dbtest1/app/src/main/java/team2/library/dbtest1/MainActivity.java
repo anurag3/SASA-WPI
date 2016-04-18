@@ -1,7 +1,9 @@
 package team2.library.dbtest1;
 
+import android.annotation.TargetApi;
 import android.content.Intent;
 import android.database.Cursor;
+import android.os.Build;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.view.View;
@@ -19,11 +21,14 @@ public class MainActivity extends AppCompatActivity {
 
 
     private ListView listView;
+
+
     //SQLiteDatabse mydatabase = openOrCreateDatabase("your database name",MODE_PRIVATE,null);
     protected void onCreate(Bundle savedInstanceState) {
         System.gc();
         super.onCreate(savedInstanceState);
         setContentView(R.layout.main_page_test);
+        overridePendingTransition(R.anim.move_right_in_activity, R.anim.move_left_out_activity);
         try{
             DBOperator.copyDB(getBaseContext());
         }catch(Exception e){
@@ -51,7 +56,10 @@ public class MainActivity extends AppCompatActivity {
         setTitle("Welcome "+username[0][0]);
         }
 
+
+
     private class ItemClickListener implements android.widget.AdapterView.OnItemClickListener {
+        @TargetApi(Build.VERSION_CODES.LOLLIPOP)
         @Override
         public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
 
@@ -64,6 +72,10 @@ public class MainActivity extends AppCompatActivity {
             intent.putExtra("event_id",event_id);
             intent.putExtra("event_title",event_title);
             intent.putExtra("event_desc", event_desc);
+            /*View sharedView = listView;
+            String tr = "eventlist";
+            ActivityOptions options = ActivityOptions.makeSceneTransitionAnimation(MainActivity.this, sharedView,tr);
+            startActivity(intent, options.toBundle());*/
             startActivity(intent);
         }
     }
@@ -76,6 +88,7 @@ public class MainActivity extends AppCompatActivity {
 
             //sql = SQLCommand.QUERY_1;
             Intent intent = new Intent(getApplicationContext(), ShowBuyListActivity.class);
+            //ActivityOptions options = ActivityOptions.makeSceneTransitionAnimation(this,)
             //intent.putExtra("sql", sql);
             startActivity(intent);
 
@@ -85,7 +98,7 @@ public class MainActivity extends AppCompatActivity {
             Intent intent = new Intent(getApplicationContext(), SellPage.class);
             this.startActivity(intent);
         }
-        if(id==R.id.hot_text)
+        /*if(id==R.id.hot_text)
         {
             Intent intent = new Intent(this, HotDeals1.class);
             this.startActivity(intent);
@@ -94,10 +107,11 @@ public class MainActivity extends AppCompatActivity {
         {
             Intent intent = new Intent(this, NewDeals1.class);
             this.startActivity(intent);
-        }
+        }*/
         if(view.getId()==R.id.wish_button){
             Intent intent = new Intent(this, WishList.class);
             this.startActivity(intent);
+
         }
         if(view.getId()==R.id.my_post){
             Intent intent = new Intent(this, MyPost.class);
@@ -108,20 +122,19 @@ public class MainActivity extends AppCompatActivity {
             startActivity(it);
         }
         if(view.getId()==R.id.logout_button){
-            Intent intent = new Intent(this, LoginActivity.class);
+            /*Intent intent = new Intent(this, LoginActivity.class);
+            overridePendingTransition(R.anim.move_left_in_activity, R.anim.move_right_out_activity);
             this.startActivity(intent);
-            finish();
+            finish();*/
+            onBackPressed();
         }
 
     }
 
-
-
-
-  /*  public void onBackPressed() {
-        Intent intent = new Intent(this, LoginActivity.class);
-        this.startActivity(intent);
-    }*/
+    public void onBackPressed() {
+        super.onBackPressed();
+        overridePendingTransition(R.anim.move_left_in_activity, R.anim.move_right_out_activity);
+    }
 
 
 

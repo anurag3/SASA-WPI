@@ -25,6 +25,8 @@ public class MyPost extends AppCompatActivity implements View.OnClickListener {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.my_posts);
 
+        overridePendingTransition(R.anim.move_right_in_activity, R.anim.move_left_out_activity);
+
         listView = (ListView) this.findViewById(R.id.my_post_list);
         listView.setOnItemClickListener(new ItemClickListener());
 
@@ -69,5 +71,10 @@ public class MyPost extends AppCompatActivity implements View.OnClickListener {
             startActivity(intent);
             finish();
         }
+    }
+
+    public void onBackPressed() {
+        super.onBackPressed();
+        overridePendingTransition(R.anim.move_left_in_activity, R.anim.move_right_out_activity);
     }
 }

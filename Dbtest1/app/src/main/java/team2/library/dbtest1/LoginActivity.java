@@ -22,6 +22,7 @@ public class LoginActivity extends AppCompatActivity {
         System.gc();
         super.onCreate(savedInstanceState);
         setContentView(R.layout.login_page);
+
         try{
             DBOperator.copyDB(getBaseContext());
         }catch(Exception e){
@@ -74,7 +75,9 @@ public class LoginActivity extends AppCompatActivity {
                 user_id=DBOperator.c;
                 Intent intent = new Intent(this, MainActivity.class);
                 this.startActivity(intent);
-                finish();
+                et1.setText("");
+                et2.setText("");
+
 
             }else
             {

@@ -1,6 +1,5 @@
 package team2.library.dbtest1;
 
-import android.content.Intent;
 import android.database.Cursor;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
@@ -31,6 +30,8 @@ public class ProfilePage extends AppCompatActivity implements View.OnClickListen
         super.onCreate(savedInstanceState);
         setContentView(R.layout.profile_page);
 
+        overridePendingTransition(R.anim.move_right_in_activity, R.anim.move_left_out_activity);
+
         profile_firstname=(EditText) this.findViewById(R.id.profile_firstname);
         profile_lastname=(EditText) this.findViewById(R.id.profile_lastname);
         profile_email=(EditText) this.findViewById(R.id.profile_email);
@@ -56,7 +57,7 @@ public class ProfilePage extends AppCompatActivity implements View.OnClickListen
         profile_email.setText(email);
         profile_phone.setText(phone);
 
-        update= (Button) this.findViewById(R.id.update_btn);
+        update = (Button) this.findViewById(R.id.update_btn);
         update.setOnClickListener(this);
 
 }
@@ -84,8 +85,6 @@ public class ProfilePage extends AppCompatActivity implements View.OnClickListen
     @Override
     public void onBackPressed() {
         super.onBackPressed();
-        Intent intent = new Intent(this, MainActivity.class);
-        this.startActivity(intent);
-        finish();
+        overridePendingTransition(R.anim.move_left_in_activity, R.anim.move_right_out_activity);
     }
 }

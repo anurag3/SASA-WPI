@@ -30,6 +30,9 @@ public class AddNewItem extends AppCompatActivity implements View.OnClickListene
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.add_new_item);
+
+        overridePendingTransition(R.anim.move_right_in_activity, R.anim.move_left_out_activity);
+
         item_name = (EditText) this.findViewById(R.id.item_name);
         item_qoh = (EditText) this.findViewById(R.id.item_qoh);
         item_price = (EditText) this.findViewById(R.id.item_price);
@@ -164,4 +167,10 @@ public class AddNewItem extends AppCompatActivity implements View.OnClickListene
             }
 
     }
+
+    public void onBackPressed() {
+        super.onBackPressed();
+        overridePendingTransition(R.anim.move_left_in_activity, R.anim.move_right_out_activity);
+    }
+
 }

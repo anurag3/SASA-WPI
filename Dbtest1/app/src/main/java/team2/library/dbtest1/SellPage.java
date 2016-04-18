@@ -20,6 +20,9 @@ public class SellPage extends AppCompatActivity {
         System.gc();
         super.onCreate(savedInstanceState);
         setContentView(R.layout.sell_page);
+
+        overridePendingTransition(R.anim.move_right_in_activity, R.anim.move_left_out_activity);
+
         et1 = (EditText) this.findViewById(R.id.editText1);
 
         et3 = (EditText) this.findViewById(R.id.editText3);
@@ -67,8 +70,12 @@ public class SellPage extends AppCompatActivity {
             }*/
             Intent intent = new Intent(this, AddNewItem.class);
             this.startActivity(intent);
-            finish();
         }
         }
+    }
+
+    public void onBackPressed() {
+        super.onBackPressed();
+        overridePendingTransition(R.anim.move_left_in_activity, R.anim.move_right_out_activity);
     }
 }

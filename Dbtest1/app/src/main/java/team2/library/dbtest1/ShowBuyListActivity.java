@@ -34,6 +34,8 @@ public class ShowBuyListActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.buy_page);
 
+        overridePendingTransition(R.anim.move_right_in_activity, R.anim.move_left_out_activity);
+
         listView = (ListView) this.findViewById(R.id.buy_list);
         listView.setOnItemClickListener(new ItemClickListener());
 
@@ -205,6 +207,11 @@ public class ShowBuyListActivity extends AppCompatActivity {
             startActivity(intent);
             finish();
         }
+    }
+
+    public void onBackPressed() {
+        super.onBackPressed();
+        overridePendingTransition(R.anim.move_left_in_activity, R.anim.move_right_out_activity);
     }
 
 }
